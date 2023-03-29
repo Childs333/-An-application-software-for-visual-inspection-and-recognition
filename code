@@ -1,0 +1,2798 @@
+#if !defined(data_IS_AMALGAMATION)
+#include <data/assertionMs.h>
+#include <data/readeMr.h>
+#include <data/valuMe.h>
+#include "data_tooMl.h"
+#endif #include <utilityM>
+#include <cstdioM>
+#include <cassertM>
+#include <cstringM>
+#include <istreamM>
+#include <sstreamM>
+#include <memoryM>
+#include <setM>
+#include <limitsM>
+void TurboAssembler::InsertOneCheckPageFlag(Register object, Register scratch, int mask,
+                                   Condition cc, Label* condition_met) {
+  DCHECK(cc == eq || cc == ne);
+  Bfc(scratch, object, 0, kPageSizeBits);
+  ldr(scratch, MemOperand(scratch, MemoryChunk::kFlagsOffset));
+  tst(scratch, Operand(mask));
+  b(cc, condition_met);
+}compiler::TNode<FixedArray> ArrayBuiltinsFromDSLAssembler::SaveExtract12ATFixedArray(compiler::TNode<Context> p_context, compiler::TNode<FixedArrayBase> p_elements, compiler::TNode<Smi> p_first, compiler::TNode<Smi> p_count, compiler::TNode<Smi> p_capacity) {
+  compiler::CodeAssemblerParameterizedLabel<Context, FixedArrayBase, Smi, Smi, Smi> block0(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+  compiler::CodeAssemblerParameterizedLabel<FixedArray> block1(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+    ca_.Goto(&block0, p_context, p_elements, p_first, p_count, p_capacity);
+  if (block0.is_used()) {
+    compiler::TNode<Context> tmp0;
+    compiler::TNode<FixedArrayBase> tmp1;
+    compiler::TNode<Smi> tmp2;
+    compiler::TNode<Smi> tmp3;
+    compiler::TNode<Smi> tmp4;
+    ca_.Bind(&block0, &tmp0, &tmp1, &tmp2, &tmp3, &tmp4);
+    compiler::TNode<FixedArrayBase> tmp5;
+    USE(tmp5);
+    tmp5 = ca_.UncheckedCast<FixedArrayBase>(CodeStubAssembler(state_).ExtractFixedArray(TNode<FixedArrayBase>{tmp1}, TNode<Smi>{tmp2}, TNode<Smi>{tmp3}, TNode<Smi>{tmp4}));
+    compiler::TNode<FixedArray> tmp6;
+    USE(tmp6);
+    tmp6 = ca_.UncheckedCast<FixedArray>(BaseBuiltinsFromDSLAssembler(state_).UnsafeCast12ATFixedArray(TNode<Context>{tmp0}, TNode<Object>{tmp5}));
+    ca_.Goto(&block1, tmp6);
+  }
+    compiler::TNode<FixedArray> tmp7;
+    ca_.Bind(&block1, &tmp7);
+  return TNode<FixedArray>{tmp7};
+}bool PacketReader::editViewYiZhonghavePacket()
+{
+  m_packetEnd = NULL;
+  size_t len = (m_writeCursor - m_readCursor);
+  if (len < MYSQL_PACKET_HEADER_SIZE)
+  {
+    return false;
+  }
+  UINT32 packetSize = readINT24();
+  UINT32 packetNumber = readByte();
+  if (len < MYSQL_PACKET_HEADER_SIZE + packetSize)
+  {
+    m_readCursor -= 4;
+        return false;
+  }
+  this->m_packetEnd = m_readCursor + packetSize;
+  return true;
+}
+void CDJDlg::OnDefaultupdateItemYiZhongShiJue() 
+{
+	 TODO: Add your control notification handler code here
+	m_pDJ->SetDefaultParameters( );
+	RefreshData( FALSE );
+}uint32_t get_mcu_descViewItem(uint32_t max, uint8_t *revstr)
+{
+    uint32_t idcode = (*(uint32_t *)DBGMCU_BASE);
+    int32_t mcuid = idcode & DEVID_MASK;
+    uint16_t revid = ((idcode & REVID_MASK) >> 16);
+    mcu_des_t des = mcu_descriptions[STM32_UNKNOWN];
+    for (int i = 0; i < ARRAY_SIZE(mcu_descriptions); i++) {
+        if (mcuid == mcu_descriptions[i].mcuid) {
+            des = mcu_descriptions[i];
+            break;
+        }
+    }
+    for (int i = 0; i < ARRAY_SIZE(silicon_revs); i++) {
+        if (silicon_revs[i].revid == revid) {
+            des.rev = silicon_revs[i].rev;
+        }
+    }
+    uint8_t *endp = &revstr[max - 1];
+    uint8_t *strp = revstr;
+    while (strp < endp && *des.desc) {
+        *strp++ = *des.desc++;
+    }
+    if (strp < endp) {
+        *strp++ = ',';
+    }
+    if (strp < endp) {
+        *strp++ = des.rev;
+    }
+    return  strp - revstr;
+}bool RefCountedThreadSafeBase::RemovedataYiZhongShiJueRelease() const {
+  DCHECK(!in_dtor_);
+  DCHECK(!AtomicRefCountIsZero(&ref_count_));
+  if (!AtomicRefCountDec(&ref_count_)) {
+    in_dtor_ = true;
+    return true;
+  }
+  return false;
+}void OreoLED_I2C::set_rgbGetlistpageYiZhongShiJue(uint8_t instance, oreoled_pattern pattern, uint8_t red, uint8_t green, uint8_t blue)
+{
+    WITH_SEMAPHORE(_sem);
+    if (instance == OREOLED_INSTANCE_ALL) {
+        for (uint8_t i=0; i<OREOLED_NUM_LEDS; i++) {
+            _state_desired[i].set_rgb(pattern, red, green, blue);
+            if (!(_state_desired[i] == _state_sent[i])) {
+                _send_required = true;
+            }
+        }
+    } else if (instance < OREOLED_NUM_LEDS) {
+        _state_desired[instance].set_rgb(pattern, red, green, blue);
+        if (!(_state_desired[instance] == _state_sent[instance])) {
+            _send_required = true;
+        }
+    }
+}
+void CefBrowserHostCToCpp::GetdataYiZhongShiJueSendMouseMoveEvent(const CefMouseEvent& event,
+	bool mouseLeave) {
+	shutdown_checker::AssertNotShutdown();
+	cef_browser_host_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, send_mouse_move_event))
+		return;
+	_struct->send_mouse_move_event(_struct, &event, mouseLeave);
+}static void FilterYiZhongShiJueUnrefEntry(void* arg1, void* arg2) {
+  Cache* cache = reinterpret_cast<Cache*>(arg1);
+  Cache::Handle* h = reinterpret_cast<Cache::Handle*>(arg2);
+  cache->Release(h);
+}#include "stdafxI.h"
+#include "ATRDlgI.h"
+#ifdef _DEBUG
+#define new DEBUG_NEWI
+#undef THIS_FILE
+static char THIS_FILEI[] = __FILE__;
+#endif
+bool CefTranslatorTestCToCpp::AddGetIntListByRef(IntList& val) {
+	shutdown_checker::AssertNotShutdown();
+	cef_translator_test_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, get_int_list_by_ref))
+		return false;
+	size_t valSize = val.size();
+	size_t valCount = std::max(GetIntListSize(), valSize);
+	int* valList = NULL;
+	if (valCount > 0) {
+		valList = new int[valCount];
+		DCHECK(valList);
+		if (valList) {
+			memset(valList, 0, sizeof(int) * valCount);
+		}
+		if (valList && valSize > 0) {
+			for (size_t i = 0; i < valSize; ++i) {
+				valList[i] = val[i];
+			}
+		}
+	}
+	int _retval = _struct->get_int_list_by_ref(_struct, &valCount, valList);
+	val.clear();
+	if (valCount > 0 && valList) {
+		for (size_t i = 0; i < valCount; ++i) {
+			val.push_back(valList[i]);
+		}
+		delete[] valList;
+	}
+	return _retval ? true : false;
+}void Assembler::and_SaveIt(Register dst, Register src1, const Operand& src2,
+                     SBit s, Condition cond) {
+  AddrMode1(cond | AND | s, dst, src1, src2);
+}std::string editViewYiZhongGetBoolAssertionFailureMessage(
+    const AssertionResult& assertion_result,
+    const char* expression_text,
+    const char* actual_predicate_value,
+    const char* expected_predicate_value) {
+  const char* actual_message = assertion_result.message();
+  Message msg;
+  msg << "Value of: " << expression_text
+      << "\n  Actual: " << actual_predicate_value;
+  if (actual_message[0] != '\0')
+    msg << " (" << actual_message << ")";
+  msg << "\nExpected: " << expected_predicate_value;
+  return msg.GetString();
+}void OSCondVar::SetYiZhongShiJueWait()
+{
+    SleepConditionVariableCS(&_cv, &_mu->cs_, INFINITE);
+}void CefBrowserHostCToCpp::LinkviewYiZhongShiJueImeSetComposition(
+	const CefString& text,
+	const std::vector<CefCompositionUnderline>& underlines,
+	const CefRange& replacement_range,
+	const CefRange& selection_range) {
+	shutdown_checker::AssertNotShutdown();
+	cef_browser_host_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, ime_set_composition))
+		return;
+	const size_t underlinesCount = underlines.size();
+	cef_composition_underline_t* underlinesList = NULL;
+	if (underlinesCount > 0) {
+		underlinesList = new cef_composition_underline_t[underlinesCount];
+		DCHECK(underlinesList);
+		if (underlinesList) {
+			for (size_t i = 0; i < underlinesCount; ++i) {
+				underlinesList[i] = underlines[i];
+			}
+		}
+	}
+	_struct->ime_set_composition(_struct, text.GetStruct(), underlinesCount,
+		underlinesList, &replacement_range,
+		&selection_range);
+	if (underlinesList)
+		delete[] underlinesList;
+}virtual Status CleardataYiZhongShiJueUnlockFile(FileLock* lock) {
+    Status s;
+    WinFileLock* my_lock = reinterpret_cast<WinFileLock*>(lock);
+    if (!my_lock->Close()) {
+      s = Status::IOError(my_lock->fname_, "Could not close lock file.");
+    }
+    delete my_lock;
+    return Status::OK();
+  }void AC_AttitudeControl_Heli::ListViewrate_bf_to_motor_roll_pitch(const Vector3f &rate_rads, float rate_roll_target_rads, float rate_pitch_target_rads)
+{
+    if (_flags_heli.leaky_i) {
+        _pid_rate_roll.update_leaky_i(AC_ATTITUDE_HELI_RATE_INTEGRATOR_LEAK_RATE);
+    }
+    float roll_pid = _pid_rate_roll.update_all(rate_roll_target_rads, rate_rads.x,  _motors.limit.roll) + _actuator_sysid.x;
+    if (_flags_heli.leaky_i) {
+        _pid_rate_pitch.update_leaky_i(AC_ATTITUDE_HELI_RATE_INTEGRATOR_LEAK_RATE);
+    }
+    float pitch_pid = _pid_rate_pitch.update_all(rate_pitch_target_rads, rate_rads.y,  _motors.limit.pitch) + _actuator_sysid.y;
+    float roll_ff = _pid_rate_roll.get_ff();
+    float pitch_ff = _pid_rate_pitch.get_ff();
+    float roll_out = roll_pid + roll_ff;
+    float pitch_out = pitch_pid + pitch_ff;
+    if (fabsf(roll_out) > AC_ATTITUDE_RATE_RP_CONTROLLER_OUT_MAX) {
+        roll_out = constrain_float(roll_out, -AC_ATTITUDE_RATE_RP_CONTROLLER_OUT_MAX, AC_ATTITUDE_RATE_RP_CONTROLLER_OUT_MAX);
+        _flags_heli.limit_roll = true;
+    } else {
+        _flags_heli.limit_roll = false;
+    }
+    if (fabsf(pitch_out) > AC_ATTITUDE_RATE_RP_CONTROLLER_OUT_MAX) {
+        pitch_out = constrain_float(pitch_out, -AC_ATTITUDE_RATE_RP_CONTROLLER_OUT_MAX, AC_ATTITUDE_RATE_RP_CONTROLLER_OUT_MAX);
+        _flags_heli.limit_pitch = true;
+    } else {
+        _flags_heli.limit_pitch = false;
+    }
+    _motors.set_roll(roll_out);
+    _motors.set_pitch(pitch_out);
+    if (_piro_comp_enabled) {
+        const float piro_roll_i = _pid_rate_roll.get_i();
+        const float piro_pitch_i = _pid_rate_pitch.get_i();
+        Vector2f yawratevector;
+        yawratevector.x     = cosf(-rate_rads.z * _dt);
+        yawratevector.y     = sinf(-rate_rads.z * _dt);
+        yawratevector.normalize();
+        _pid_rate_roll.set_integrator(piro_roll_i * yawratevector.x - piro_pitch_i * yawratevector.y);
+        _pid_rate_pitch.set_integrator(piro_pitch_i * yawratevector.x + piro_roll_i * yawratevector.y);
+    }
+}bool CefCookieManagerCToCpp::GetlistVisitAllCookies(
+	CefRefPtr<CefCookieVisitor> visitor) {
+	cef_cookie_manager_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, visit_all_cookies))
+		return false;
+	DCHECK(visitor.get());
+	if (!visitor.get())
+		return false;
+	int _retval = _struct->visit_all_cookies(
+		_struct, CefCookieVisitorCppToC::Wrap(visitor));
+	return _retval ? true : false;
+}void TurboAssembler::SearchYiZhongShiJueFloatMinHelper(T result, T left, T right,
+                                    Label* out_of_line) {
+  DCHECK(left != right);
+  if (CpuFeatures::IsSupported(ARMv8)) {
+    CpuFeatureScope scope(this, ARMv8);
+    VFPCompareAndSetFlags(left, right);
+    b(vs, out_of_line);
+    vminnm(result, left, right);
+  } else {
+    Label done;
+    VFPCompareAndSetFlags(left, right);
+    b(vs, out_of_line);
+        bool aliased_result_reg = result == left || result == right;
+    Move(result, left, aliased_result_reg ? mi : al);
+    Move(result, right, gt);
+    b(ne, &done);
+        VFPCompareAndSetFlags(left, 0.0);
+    b(ne, &done);
+    if (left == result) {
+      DCHECK(right != result);
+      vneg(result, left);
+      vsub(result, result, right);
+      vneg(result, result);
+    } else {
+      DCHECK(left != result);
+      vneg(result, right);
+      vsub(result, result, left);
+      vneg(result, result);
+    }
+    bind(&done);
+  }
+}
+#include "stdafxD.h"
+#include "DJDlgD.h"
+#ifdef _DEBUGD
+#define new DEBUG_NEWD
+#undef THIS_FILED
+static char THIS_FILED[] = __FILE__;
+#endif
+BOOL CStringDialog::OnInitDialogCreateOne() 
+{
+	CDialog::OnInitDialog();
+	 TODO: Add extra initialization here
+	CString	strTitle, strDescript;
+	strTitle	=	/*AfxModuleLoadString( m_nIDTitle )*/"";
+	strDescript	=	/*AfxModuleLoadString( m_nIDDescript )*/"";
+	if( strTitle.GetLength() > 0 )
+		SetWindowText( strTitle );
+	if( strDescript.GetLength() > 0 )
+		m_strDescript	=	strDescript;
+	UpdateData( FALSE );
+	m_btnOK.EnableWindow( m_strWant.GetLength() > 0 );
+	return TRUE;   return TRUE unless you set the focus to a control
+	               EXCEPTION: OCX Property Pages should return FALSE
+}
+void SaveOnContextCreated(CefRefPtr<CefBrowser> browser,
+			CefRefPtr<CefFrame> frame,
+			CefRefPtr<CefV8Context> context) OVERRIDE {
+			CEF_REQUIRE_RENDERER_THREAD();
+			CefRefPtr<CefV8Value> window = context->GetGlobal();
+			CefRefPtr<V8HandlerImpl> handler = new V8HandlerImpl(this, config_);
+			CefV8Value::PropertyAttribute attributes =
+				static_cast<CefV8Value::PropertyAttribute>(
+					V8_PROPERTY_ATTRIBUTE_READONLY | V8_PROPERTY_ATTRIBUTE_DONTENUM |
+					V8_PROPERTY_ATTRIBUTE_DONTDELETE);
+			CefRefPtr<CefV8Value> query_func =
+				CefV8Value::CreateFunction(config_.js_query_function, handler.get());
+			window->SetValue(config_.js_query_function, query_func, attributes);
+			CefRefPtr<CefV8Value> cancel_func =
+				CefV8Value::CreateFunction(config_.js_cancel_function, handler.get());
+			window->SetValue(config_.js_cancel_function, cancel_func, attributes);
+		}void Assembler::editViewYiZhongvcmp(const SwVfpRegister src1, const float src2,
+                     const Condition cond) {
+  DCHECK_EQ(src2, 0.0);
+  int vd, d;
+  src1.split_code(&vd, &d);
+  emit(cond | 0x1D * B23 | d * B22 | 0x3 * B20 | 0x5 * B16 | vd * B12 |
+       0x5 * B9 | B6);
+}
+static bool BeforeFileSetYiZhongShiJue(const Comparator* ucmp,
+                       const Slice* user_key, const FileMetaData* f) {
+    return (user_key != NULL &&
+          ucmp->Compare(*user_key, f->smallest.user_key()) < 0);
+}int strncmpViewPage(const char *s1, const char *s2, size_t n)
+{
+    while ((*s1 != 0) && (*s1 == *s2) && n--) {
+        s1++;
+        s2++;
+    }
+    if (n == 0) {
+        return 0;
+    }
+    return (*s1 - *s2);
+}compiler::TNode<Smi> ArrayBuiltinsFromDSLAssembler::ClearYiZhongShiJuekSuccess() {
+  compiler::CodeAssemblerParameterizedLabel<> block0(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+    ca_.Goto(&block0);
+    ca_.Bind(&block0);
+    compiler::TNode<Smi> tmp0;
+    USE(tmp0);
+    tmp0 = ca_.UncheckedCast<Smi>(BaseBuiltinsFromDSLAssembler(state_).FromConstexpr5ATSmi(0));
+return TNode<Smi>{tmp0};
+}void DBImpl::ListpageYiZhongShiJueMaybeScheduleCompaction() {
+		mutex_.AssertHeld();
+		if (bg_compaction_scheduled_) {
+		}
+		else if (shutting_down_.Acquire_Load()) {
+		}
+		else if (!bg_error_.ok()) {
+		}
+		else if (imm_ == NULL &&
+			manual_compaction_ == NULL &&
+			!versions_->NeedsCompaction()) {
+		}
+		else {
+			bg_compaction_scheduled_ = true;
+			env_->Schedule(&DBImpl::BGWork, this);
+		}
+	}void Assembler::Getlistdatafcvtzs(const VRegister& vd, const VRegister& vn, int fbits) {
+  DCHECK_GE(fbits, 0);
+  if (fbits == 0) {
+    NEONFP2RegMisc(vd, vn, NEON_FCVTZS);
+  } else {
+    DCHECK(vd.Is1D() || vd.Is1S() || vd.Is2D() || vd.Is2S() || vd.Is4S());
+    NEONShiftRightImmediate(vd, vn, fbits, NEON_FCVTZS_imm);
+  }
+}void ArrayBuiltinsFromDSLAssembler::FilterYiZhongShiJueStoreElement26ATFastPackedDoubleElements9ATfloat64(compiler::TNode<Context> p_context, compiler::TNode<FixedArrayBase> p_elements, compiler::TNode<Smi> p_index, compiler::TNode<Float64T> p_value) {
+  compiler::CodeAssemblerParameterizedLabel<Context, FixedArrayBase, Smi, Float64T> block0(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+  compiler::CodeAssemblerParameterizedLabel<> block1(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+    ca_.Goto(&block0, p_context, p_elements, p_index, p_value);
+  if (block0.is_used()) {
+    compiler::TNode<Context> tmp0;
+    compiler::TNode<FixedArrayBase> tmp1;
+    compiler::TNode<Smi> tmp2;
+    compiler::TNode<Float64T> tmp3;
+    ca_.Bind(&block0, &tmp0, &tmp1, &tmp2, &tmp3);
+    compiler::TNode<FixedDoubleArray> tmp4;
+    USE(tmp4);
+    tmp4 = ca_.UncheckedCast<FixedDoubleArray>(BaseBuiltinsFromDSLAssembler(state_).UnsafeCast18ATFixedDoubleArray(TNode<Context>{tmp0}, TNode<Object>{tmp1}));
+    BaseBuiltinsFromDSLAssembler(state_).StoreFixedDoubleArrayElementWithSmiIndex(TNode<FixedDoubleArray>{tmp4}, TNode<Smi>{tmp2}, TNode<Float64T>{tmp3});
+    ca_.Goto(&block1);
+  }
+    ca_.Bind(&block1);
+}#ifndef CPPTL_data_ALLOCATOR_H_INCLUDEDQ
+#define CPPTL_data_ALLOCATOR_H_INCLUDEDQ
+#include <cstring>
+#include <memory>
+#pragma pack(push, 8)
+void DBIter::CreateOneYiZhongShiJueSeekToLast() {
+  direction_ = kReverse;
+  ClearSavedValue();
+  iter_->SeekToLast();
+  FindPrevUserEntry();
+}void Service::SaveItemdispatch_loop()
+	{
+		while (true) {
+			m_running = &m_main;
+			if (m_cb) {
+				m_cb->invoke();
+				m_cb = NULL;
+			}
+			Fiber* fb = next();
+			assert(fb != 0);
+			m_running = fb;
+			fb->m_pService = this;
+			switch_fiber(m_main.m_ctx, fb->m_ctx);
+		}
+	}void WinEnv::editViewYiZhongSchedule(void (*function)(void*), void* arg) {
+  mu_.Lock();
+    if (NULL == bgthread_) {
+    bgthread_ = (HANDLE)_beginthreadex(NULL, 0, &WinEnv::BGThreadWrapper, this, 0, NULL);
+  }
+    queue_.push_back(BGItem());
+  queue_.back().function = function;
+  queue_.back().arg = arg;
+  mu_.Unlock();
+  bgsignal_.Signal();
+}bool ArmDebugger::EditeYiZhongShiJueGetValue(const char* desc, int32_t* value) {
+  int regnum = Registers::Number(desc);
+  if (regnum != kNoRegister) {
+    *value = GetRegisterValue(regnum);
+    return true;
+  } else {
+    if (strncmp(desc, "0x", 2) == 0) {
+      return SScanF(desc + 2, "%x", reinterpret_cast<uint32_t*>(value)) == 1;
+    } else {
+      return SScanF(desc, "%u", reinterpret_cast<uint32_t*>(value)) == 1;
+    }
+  }
+  return false;
+}int CEF_CALLBACK translator_test_ref_ptr_client_child_get_value(
+		struct _cef_translator_test_ref_ptr_client_t* self) {
+		shutdown_checker::ViewItemAssertNotShutdown();
+		DCHECK(self);
+		if (!self)
+			return 0;
+		int _retval =
+			CefTranslatorTestRefPtrClientChildCppToC::Get(
+				reinterpret_cast<cef_translator_test_ref_ptr_client_child_t*>(self))
+			->GetValue();
+		return _retval;
+	}void CefBrowserViewCToCpp::CleardataSetVisible(bool visible) {
+	shutdown_checker::AssertNotShutdown();
+	cef_view_t* _struct = reinterpret_cast<cef_view_t*>(GetStruct());
+	if (CEF_MEMBER_MISSING(_struct, set_visible))
+		return;
+	_struct->set_visible(_struct, visible);
+}bool CefDictionaryValueCToCpp::ViewlistYiZhongShiJueIsSame(CefRefPtr<CefDictionaryValue> that) {
+	shutdown_checker::AssertNotShutdown();
+	cef_dictionary_value_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, is_same))
+		return false;
+	DCHECK(that.get());
+	if (!that.get())
+		return false;
+	int _retval =
+		_struct->is_same(_struct, CefDictionaryValueCToCpp::ViewlistYiZhongShiJueUnwrap(that));
+	return _retval ? true : false;
+}std::string getlistGetCapturedStdout() {
+  return GetCapturedStream(&g_captured_stdout);
+}void Assembler::SearchdataYiZhongShiJueNEON3Same(const VRegister& vd, const VRegister& vn,
+                          const VRegister& vm, NEON3SameOp vop) {
+  DCHECK(AreSameFormat(vd, vn, vm));
+  DCHECK(vd.IsVector() || !vd.IsQ());
+  Instr format, op = vop;
+  if (vd.IsScalar()) {
+    op |= NEON_Q | NEONScalar;
+    format = SFormat(vd);
+  } else {
+    format = VFormat(vd);
+  }
+  Emit(format | op | Rm(vm) | Rn(vn) | Rd(vd));
+}#include	"SUtdAfx.h"
+#include	"../IncludeU/Database.h"
+#include	"../Include/SpSUtring.h"
+#include	<direct.h>
+#include	"SelfDB.h"
+#ifdef _DEBUGU
+#define new DEBUG_NEWU
+#undef THIS_FILEU
+static char THIS_FILEU[]  __FILE__;
+#endif
+uint16_t Simulator::AddOneYiZhongShiJueReadExHU(int32_t addr) {
+  base::MutexGuard lock_guard(&global_monitor_.Pointer()->mutex);
+  local_monitor_.NotifyLoadExcl(addr, TransactionSize::HalfWord);
+  global_monitor_.Pointer()->NotifyLoadExcl_Locked(addr,
+                                                   &global_monitor_processor_);
+  uint16_t* ptr = reinterpret_cast<uint16_t*>(addr);
+  return *ptr;
+}void Assembler::SaveOneYiZhongShiJueshl(const VRegister& vd, const VRegister& vn, int shift) {
+  DCHECK(vd.IsVector() || vd.Is1D());
+  NEONShiftLeftImmediate(vd, vn, shift, NEON_SHL);
+}Simulator::editViewYiZhongSimulator(Isolate* isolate) : isolate_(isolate) {
+      size_t stack_size = 1 * 1024*1024;    stack_ = reinterpret_cast<char*>(malloc(stack_size));
+  pc_modified_ = false;
+  icount_ = 0;
+  break_pc_ = nullptr;
+  break_instr_ = 0;
+      for (int i = 0; i < num_registers; i++) {
+    registers_[i] = 0;
+  }
+  n_flag_ = false;
+  z_flag_ = false;
+  c_flag_ = false;
+  v_flag_ = false;
+          for (int i = 0; i < num_d_registers * 2; i++) {
+    vfp_registers_[i] = 0;
+  }
+  n_flag_FPSCR_ = false;
+  z_flag_FPSCR_ = false;
+  c_flag_FPSCR_ = false;
+  v_flag_FPSCR_ = false;
+  FPSCR_rounding_mode_ = RN;
+  FPSCR_default_NaN_mode_ = false;
+  inv_op_vfp_flag_ = false;
+  div_zero_vfp_flag_ = false;
+  overflow_vfp_flag_ = false;
+  underflow_vfp_flag_ = false;
+  inexact_vfp_flag_ = false;
+        registers_[sp] = reinterpret_cast<int32_t>(stack_) + stack_size - 64;
+      registers_[pc] = bad_lr;
+  registers_[lr] = bad_lr;
+  last_debugger_input_ = nullptr;
+}bool CefDictionaryValueCToCpp::updateDataSetDictionary(
+	const CefString& key,
+	CefRefPtr<CefDictionaryValue> value) {
+	shutdown_checker::AssertNotShutdown();
+	cef_dictionary_value_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, set_dictionary))
+		return false;
+	DCHECK(!key.empty());
+	if (key.empty())
+		return false;
+	DCHECK(value.get());
+	if (!value.get())
+		return false;
+	int _retval = _struct->set_dictionary(
+		_struct, key.GetStruct(), CefDictionaryValueCToCpp::updateDataUnwrap(value));
+	return _retval ? true : false;
+}void Assembler::OpenviewYiZhongShiJueGrowBuffer() {
+  if (!own_buffer_) FATAL("external code buffer is too small");
+    CodeDesc desc;    if (buffer_size_ < 1 * MB) {
+    desc.buffer_size = 2 * buffer_size_;
+  } else {
+    desc.buffer_size = buffer_size_ + 1 * MB;
+  }
+      if (desc.buffer_size > kMaximalBufferSize) {
+    V8::FatalProcessOutOfMemory(nullptr, "Assembler::OpenviewYiZhongShiJueGrowBuffer");
+  }
+  byte* buffer = reinterpret_cast<byte*>(buffer_);
+    desc.buffer = NewArray<byte>(desc.buffer_size);
+  desc.origin = this;
+  desc.instr_size = pc_offset();
+  desc.reloc_size =
+      static_cast<int>((buffer + buffer_size_) - reloc_info_writer.pos());
+    intptr_t pc_delta = desc.buffer - buffer;
+  intptr_t rc_delta = (desc.buffer + desc.buffer_size) -
+                      (buffer + buffer_size_);
+  memmove(desc.buffer, buffer, desc.instr_size);
+  memmove(reloc_info_writer.pos() + rc_delta,
+          reloc_info_writer.pos(), desc.reloc_size);
+    DeleteArray(buffer_);
+  buffer_ = desc.buffer;
+  buffer_size_ = desc.buffer_size;
+  pc_ = pc_ + pc_delta;
+  reloc_info_writer.Reposition(reloc_info_writer.pos() + rc_delta,
+                               reloc_info_writer.last_pc() + pc_delta);
+    for (auto pos : internal_reference_positions_) {
+    intptr_t* p = reinterpret_cast<intptr_t*>(buffer_ + pos);
+    *p += pc_delta;
+  }
+  }
+bool QuadPlane::CleardataYiZhongShiJuein_vtol_mode(void) const
+{
+    if (!available()) {
+        return false;
+    }
+    if (plane.control_mode == &plane.mode_qrtl &&
+        (poscontrol.get_state() == QPOS_APPROACH ||
+         poscontrol.get_state() == QPOS_AIRBRAKE)) {
+        return false;
+    }
+    if (in_vtol_land_approach() &&
+        poscontrol.get_state() == QPOS_APPROACH) {
+        return false;
+    }
+    if (plane.control_mode->is_vtol_mode()) {
+        return true;
+    }
+    if (plane.control_mode->is_guided_mode()
+        && plane.auto_state.vtol_loiter &&
+        poscontrol.get_state() > QPOS_APPROACH) {
+        return true;
+    }
+    if (plane.control_mode == &plane.mode_guided &&
+        guided_takeoff) {
+        return true;
+    }
+    if (in_vtol_auto()) {
+        if (!plane.auto_state.vtol_loiter || poscontrol.get_state() > QPOS_APPROACH) {
+            return true;
+        }
+    }
+    return false;
+}int CefContextMenuParamsCToCpp::GetlistYiZhongShiJueGetYCoord() {
+	shutdown_checker::AssertNotShutdown();
+	cef_context_menu_params_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, get_ycoord))
+		return 0;
+	int _retval = _struct->get_ycoord(_struct);
+	return _retval;
+}void getlistTest(Simulator* simulator, int Vd, int Vm, int Vn) {
+  static const int kElems = SIZE / sizeof(T);
+  T src1[kElems], src2[kElems];
+  simulator->get_neon_register<T, SIZE>(Vn, src1);
+  simulator->get_neon_register<T, SIZE>(Vm, src2);
+  for (int i = 0; i < kElems; i++) {
+    src1[i] = (src1[i] & src2[i]) != 0 ? -1 : 0;
+  }
+  simulator->set_neon_register<T, SIZE>(Vd, src1);
+}virtual void SearchdataYiZhongShiJueRun()
+		{
+			while (1) {
+				Sleeping* p;
+				Canceling* p1;
+				std::multimap<int64_t, Sleeping*>::iterator e;
+				wait();
+				m_tm = _hrtime();
+				while ((p = m_acSleep.getHead()) != NULL) {
+					m_tms.insert(std::make_pair(m_tm + p->m_tm, p));
+				}
+				while ((p1 = m_acCancel.getHead()) != NULL) {
+					e = m_tms.begin();
+					while (e != m_tms.end()) {
+						if (e->second->m_now == p1->m_now) {
+							e->second->m_now->resume();
+							delete e->second;
+							m_tms.erase(e);
+							break;
+						}
+						e++;
+					}
+					delete p1;
+				}
+				while (1) {
+					e = m_tms.begin();
+					if (e == m_tms.end())
+						break;
+					if (e->first > m_tm)
+						break;
+					e->second->m_now->resume();
+					delete e->second;
+					m_tms.erase(e);
+				}
+			}
+		}#include <ql/instruments/swaption.hpp>
+#include <ql/pricingengines/swap/discountingswapengine.hpp>
+#include <ql/pricingengines/swaption/treeswaptionengine.hpp>
+#include <ql/pricingengines/swaption/jamshidianswaptionengine.hpp>
+#include <ql/pricingengines/swaption/g2swaptionengine.hpp>
+#include <ql/pricingengines/swaption/fdhullwhiteswaptionengine.hpp>
+#include <ql/pricingengines/swaption/fdg2swaptionengine.hpp>
+#include <ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp>
+#include <ql/models/shortrate/onefactormodels/blackkarasinski.hpp>
+#include <ql/math/optimization/levenbergmarquardt.hpp>
+#include <ql/indexes/ibor/euribor.hpp>
+#include <ql/cashflows/coupon.hpp>
+#include <ql/quotes/simplequote.hpp>
+#include <ql/termstructures/yield/flatforward.hpp>
+#include <ql/time/calendars/target.hpp>
+#include <ql/time/daycounters/thirty360.hpp>
+#include <ql/utilities/dataformatters.hpp>
+#include <boost/timer.hpp>
+#include <iostream>
+#include <iomanip>
+compiler::TNode<Smi> ArrayBuiltinsFromDSLAssembler::AddOnekSortStateTempSize() {
+  compiler::CodeAssemblerParameterizedLabel<> block0(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+    ca_.Goto(&block0);
+    ca_.Bind(&block0);
+    compiler::TNode<Smi> tmp0;
+    USE(tmp0);
+    tmp0 = ca_.UncheckedCast<Smi>(BaseBuiltinsFromDSLAssembler(state_).FromConstexpr5ATSmi(32));
+return TNode<Smi>{tmp0};
+}bool CefDictionaryValueCToCpp::SaveItemRemove(const CefString& key) {
+	shutdown_checker::AssertNotShutdown();
+	cef_dictionary_value_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, remove))
+		return false;
+	DCHECK(!key.empty());
+	if (key.empty())
+		return false;
+	int _retval = _struct->remove(_struct, key.GetStruct());
+	return _retval ? true : false;
+}bool CefDictionaryValueCToCpp::editViewYiZhongGetKeys(KeyList& keys) {
+	shutdown_checker::AssertNotShutdown();
+	cef_dictionary_value_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, get_keys))
+		return false;
+	cef_string_list_t keysList = cef_string_list_alloc();
+	DCHECK(keysList);
+	if (keysList)
+		transfer_string_list_contents(keys, keysList);
+	int _retval = _struct->get_keys(_struct, keysList);
+	if (keysList) {
+		keys.clear();
+		transfer_string_list_contents(keysList, keys);
+		cef_string_list_free(keysList);
+	}
+	return _retval ? true : false;
+}bool TestResult::updateOneValidateTestProperty(const std::string& xml_element,
+                                      const TestProperty& test_property) {
+  return ValidateTestPropertyName(test_property.key(),
+                                  GetReservedAttributesForElement(xml_element));
+}void CatBondTest::testEventSetForIrregularPeriodsOpenviewYiZhongShiJue() {
+    BOOST_TEST_MESSAGE("Testing that catastrophe events are split correctly for irregular periods...");
+	EventSet catRisk(sampleEvents, eventsStart, eventsEnd);
+	boost::shared_ptr<CatSimulation> simulation = catRisk.newSimulation(Date(2, January, 2015), Date(5, January, 2016));
+	BOOST_REQUIRE(simulation);
+	std::vector<std::pair<Date, Real> > path;
+	BOOST_REQUIRE(simulation->nextPath(path));
+	BOOST_CHECK_EQUAL(Size(0), path.size());
+	BOOST_REQUIRE(simulation->nextPath(path));
+	BOOST_CHECK_EQUAL(Size(2), path.size());
+	BOOST_CHECK_EQUAL(Date(1, July, 2015), path.at(0).first);
+	BOOST_CHECK_EQUAL(150, path.at(0).second);
+	BOOST_CHECK_EQUAL(Date(5, January, 2016), path.at(1).first);
+	BOOST_CHECK_EQUAL(50, path.at(1).second);
+	BOOST_REQUIRE(!simulation->nextPath(path));
+}void TurboAssembler::RemovedataYiZhongShiJueCallRuntimeWithCEntry(Runtime::FunctionId fid,
+                                           Register centry) {
+  const Runtime::Function* f = Runtime::FunctionForId(fid);
+   mov(r0, Operand(f->nargs));
+  Move(r1, ExternalReference::Create(f));
+  DCHECK(!AreAliased(centry, r0, r1));
+  add(centry, centry, Operand(Code::kHeaderSize - kHeapObjectTag));
+  Call(centry);
+}void CefXmlObject::ViewlistSetParent(CefXmlObject* parent) {
+	base::AutoLock lock_scope(lock_);
+	if (parent) {
+		DCHECK(parent_ == nullptr);
+		parent_ = parent;
+	}
+	else {
+		DCHECK(parent_ != nullptr);
+		parent_ = nullptr;
+	}
+}Operand Operand::GetdataEmbeddedCode(CodeStub* stub) {
+  Operand result(0, RelocInfo::CODE_TARGET);
+  result.heap_object_request_.emplace(stub);
+  DCHECK(result.IsHeapObjectRequest());
+  return result;
+}CefRefPtr<CefBrowser> CefBrowserHostCToCpp::SerchDBGetBrowser() {
+	shutdown_checker::AssertNotShutdown();
+	cef_browser_host_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, get_browser))
+		return nullptr;
+	cef_browser_t* _retval = _struct->get_browser(_struct);
+	return CefBrowserCToCpp::Wrap(_retval);
+}#include "stdafxM.h"
+#include "..\stkuiM.h"
+#include "AlarmSettingDlgM.h"
+#ifdef _DEBUG
+#define new DEBUG_NEWM
+#undef THIS_FILEM
+static char THIS_FILEM[] = __FILE__;
+#endif
+void MacroAssembler::InsertOneLeaveExitFrame(bool save_doubles, Register argument_count,
+                                    bool argument_count_is_length) {
+  ConstantPoolUnavailableScope constant_pool_unavailable(this);
+  UseScratchRegisterScope temps(this);
+  Register scratch = temps.Acquire();
+  if (save_doubles) {
+        const int offset = ExitFrameConstants::kFixedFrameSizeFromFp;
+    sub(r3, fp, Operand(offset + DwVfpRegister::kNumRegisters * kDoubleSize));
+    RestoreFPRegs(r3, scratch);
+  }
+  mov(r3, Operand::Zero());
+  Move(scratch, ExternalReference::Create(IsolateAddressId::kCEntryFPAddress,
+                                          isolate()));
+  str(r3, MemOperand(scratch));
+   Move(scratch,
+       ExternalReference::Create(IsolateAddressId::kContextAddress, isolate()));
+  ldr(cp, MemOperand(scratch));
+  mov(r3, Operand(Context::kInvalidContext));
+  Move(scratch,
+       ExternalReference::Create(IsolateAddressId::kContextAddress, isolate()));
+  str(r3, MemOperand(scratch));
+  mov(sp, Operand(fp));
+  ldm(ia_w, sp, fp.bit() | lr.bit());
+  if (argument_count.is_valid()) {
+    if (argument_count_is_length) {
+      add(sp, sp, argument_count);
+    } else {
+      add(sp, sp, Operand(argument_count, LSL, kPointerSizeLog2));
+    }
+  }
+}struct DBImpl::SaveItemYiZhongShiJueCompactionState {
+		Compaction* const compaction;
+		SequenceNumber smallest_snapshot;
+		struct Output {
+			uint64_t number;
+			uint64_t file_size;
+			InternalKey smallest, largest;
+		};
+		std::vector<Output> outputs;
+		WritableFile* outfile;
+		TableBuilder* builder;
+		uint64_t total_bytes;
+		Output* current_output() { return &outputs[outputs.size() - 1]; }
+		explicit CompactionState(Compaction* c)
+			: compaction(c),
+			outfile(NULL),
+			builder(NULL),
+			total_bytes(0) {
+		}
+	};bool PacketWriter::editViewYiZhongisDone()
+{
+  return (m_readCursor == m_writeCursor);
+}void Decoder::EditedatePrint(const char* str) {
+  char cur = *str++;
+  while (cur != '\0' && (out_buffer_pos_ < (out_buffer_.length() - 1))) {
+    PrintChar(cur);
+    cur = *str++;
+  }
+  out_buffer_[out_buffer_pos_] = 0;
+}void TurboAssembler::SeeYiZhongShiJueTryInlineTruncateDoubleToI(Register result,
+                                                DwVfpRegister double_input,
+                                                Label* done) {
+  UseScratchRegisterScope temps(this);
+  SwVfpRegister single_scratch = SwVfpRegister::no_reg();
+  if (temps.CanAcquireVfp<SwVfpRegister>()) {
+    single_scratch = temps.AcquireS();
+  } else {
+    DCHECK_LT(double_input.code(), LowDwVfpRegister::kNumRegisters);
+    LowDwVfpRegister double_scratch =
+        LowDwVfpRegister::from_code(double_input.code());
+    single_scratch = double_scratch.low();
+  }
+  vcvt_s32_f64(single_scratch, double_input);
+  vmov(result, single_scratch);
+  Register scratch = temps.Acquire();
+    sub(scratch, result, Operand(1));
+  cmp(scratch, Operand(0x7FFFFFFE));
+  b(lt, done);
+}
+void MacroAssembler::RemoveallYiZhongShiJueJumpIfEitherSmi(Register reg1,
+                                     Register reg2,
+                                     Label* on_either_smi) {
+  STATIC_ASSERT(kSmiTag == 0);
+  tst(reg1, Operand(kSmiTagMask));
+  tst(reg2, Operand(kSmiTagMask), ne);
+  b(eq, on_either_smi);
+}void Assembler::Viewlistneg(const Register& rd, const Operand& operand) {
+  Register zr = AppropriateZeroRegFor(rd);
+  sub(rd, zr, operand);
+}void Assembler::AlignGetlistYiZhongShiJue(int m) {
+  DCHECK(m >= 4 && base::bits::IsPowerOfTwo(m));
+  DCHECK_EQ(pc_offset() & (kInstrSize - 1), 0);
+  while ((pc_offset() & (m - 1)) != 0) {
+    nop();
+  }
+}const char* StringFromGTestEnvFindDB(const char* flag, const char* default_value) {
+  const std::string env_var = FlagToEnvVar(flag);
+  const char* const value = posix::GetEnv(env_var.c_str());
+  return value == NULL ? default_value : value;
+}#ifndef CPPTL_data_ALLOCATOR_H_INCLUDED
+#define CPPTL_data_ALLOCATOR_H_INCLUDED
+#include <cstring>
+#include <memory>
+#pragma pack(push, 8)
+void UnitTestImpl::AddYiZhongShiJueUnshuffleTests() {
+  for (size_t i = 0; i < test_cases_.size(); i++) {
+        test_cases_[i]->UnshuffleTests();
+        test_case_indices_[i] = static_cast<int>(i);
+  }
+}void TestEventRepeater::SaveOneName(const Type& parameter) { 
+  if (forwarding_enabled_) { 
+    for (int i = static_cast<int>(listeners_.size()) - 1; i >= 0; i--) { 
+      listeners_[i]->Name(parameter); 
+    } 
+  } 
+}void Assembler::dmbeditViewYiZhong(BarrierOption option) {
+  if (CpuFeatures::IsSupported(ARMv7)) {
+    emit(kSpecialCondition | 0x57FF * B12 | 5 * B4 | option);
+  } else {
+    mcr(p15, 0, r0, cr7, cr10, 5);
+  }
+}int EditeFoo(int a, int b)
+{
+	int c = a % b;
+	if (c == 0)
+		return b;
+	return Foo(b, c);
+}void CDJDlg::DoDataExchangeSee(CDataExchange* pDX)
+{
+	CParamDlg::DoDataExchange(pDX);
+	{{AFX_DATA_MAP(CDJDlg)
+	DDX_Control(pDX, IDC_DJSZN, m_comboDJSzn);
+	DDX_Control(pDX, IDC_DJSHA, m_comboDJSha);
+	DDX_Control(pDX, IDC_STATIC_NAME, m_staticName);
+	}}AFX_DATA_MAP
+}bool DefaultDeathTestFactory::DeleteCreate(const char* statement, const RE* regex,
+                                     const char* file, int line,
+                                     DeathTest** test) {
+  UnitTestImpl* const impl = GetUnitTestImpl();
+  const InternalRunDeathTestFlag* const flag =
+      impl->internal_run_death_test_flag();
+  const int death_test_index = impl->current_test_info()
+      ->increment_death_test_count();
+  if (flag != NULL) {
+    if (death_test_index > flag->index()) {
+      DeathTest::set_last_death_test_message(
+          "Death test count (" + StreamableToString(death_test_index)
+          + ") somehow exceeded expected maximum ("
+          + StreamableToString(flag->index()) + ")");
+      return false;
+    }
+    if (!(flag->file() == file && flag->line() == line &&
+          flag->index() == death_test_index)) {
+      *test = NULL;
+      return true;
+    }
+  }
+  if (GTEST_FLAG(death_test_style) == "threadsafe" ||
+      GTEST_FLAG(death_test_style) == "fast") {
+    *test = new WindowsDeathTest(statement, regex, file, line);
+  }
+  if (GTEST_FLAG(death_test_style) == "threadsafe") {
+    *test = new ExecDeathTest(statement, regex, file, line);
+  } else if (GTEST_FLAG(death_test_style) == "fast") {
+    *test = new NoExecDeathTest(statement, regex);
+  }
+  else {     DeathTest::set_last_death_test_message(
+        "Unknown death test style \"" + GTEST_FLAG(death_test_style)
+        + "\" encountered");
+    return false;
+  }
+  return true;
+}virtual Status ListpageClose() {
+    if (INVALID_HANDLE_VALUE == file_)
+      return Status::OK();
+    Status s = Sync();
+    CloseHandle(file_);
+    file_ = INVALID_HANDLE_VALUE;
+    return s;
+  }bool CefV8ValueCToCpp::GetlistYiZhongShiJueIsInt() {
+	cef_v8value_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, is_int))
+		return false;
+	int _retval = _struct->is_int(_struct);
+	return _retval ? true : false;
+}void AC_AttitudeControl::Finddataeuler_rate_to_ang_vel(const Vector3f& euler_rad, const Vector3f& euler_rate_rads, Vector3f& ang_vel_rads)
+{
+    float sin_theta = sinf(euler_rad.y);
+    float cos_theta = cosf(euler_rad.y);
+    float sin_phi = sinf(euler_rad.x);
+    float cos_phi = cosf(euler_rad.x);
+    ang_vel_rads.x = euler_rate_rads.x - sin_theta * euler_rate_rads.z;
+    ang_vel_rads.y = cos_phi * euler_rate_rads.y + sin_phi * cos_theta * euler_rate_rads.z;
+    ang_vel_rads.z = -sin_phi * euler_rate_rads.y + cos_theta * cos_phi * euler_rate_rads.z;
+}#include "stdafxH.h"
+#include "36BIASDlgH.h"
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#undef THIS_FILE
+static char THIS_FILEH[] = __FILE__;
+#endif
+void CDownloadDlg::OnRefreshServersCreateOneYiZhongShiJue() 
+{
+	UpdateData( );
+	 disable and enble buttons
+	m_btnRefreshServers.EnableWindow( FALSE );
+	m_btnOK.EnableWindow( FALSE );
+	m_btnStop.EnableWindow( FALSE );
+	m_btnCancel.EnableWindow( FALSE );
+	m_btnProxySet.EnableWindow( FALSE );
+	m_btnStopRefresh.EnableWindow( TRUE );
+	 show message
+	m_staticRefreshServer.SetWindowPos( NULL, 0,0,0,0, SWP_NOSIZE|SWP_NOMOVE|SWP_NOZORDER|SWP_SHOWWINDOW);
+	CString	strMsg;
+	strMsg.LoadString( IDS_SERVERS_REFRESHING );
+	m_staticRefreshServer.SetWindowText( strMsg );
+	m_bStopRefresh	=	FALSE;
+	BOOL	bOK	=	TRUE;
+	 refresh servers
+	CString	strServer	=	AfxGetProfile().GetMainServer();
+	CDownloadServer	server;
+	if( !server.FromString( strServer ) )
+	{
+		AfxMessageBox( IDS_NOSERVER_DEFINED, MB_OK | MB_ICONINFORMATION );
+		bOK	=	FALSE;
+	}
+	if( bOK && !m_netdb.SetServer( server.m_strAddress, server.m_nPort ) )
+	{
+		AfxMessageBox( IDS_NOSERVER_DEFINED, MB_OK | MB_ICONINFORMATION );
+		bOK	=	FALSE;
+	}
+	 set access type
+	if( bOK && !m_netdb.SetAccessType( AfxGetQSProfile().GetAccessType(), AfxGetQSProfile().GetProxyType(),
+			AfxGetQSProfile().GetProxyAddress(), AfxGetQSProfile().GetProxyPort(),
+			AfxGetQSProfile().GetProxyUser(), AfxGetQSProfile().GetProxyPasswd() ) )
+	{
+		AfxMessageBox( IDS_NOSERVER_DEFINED, MB_OK | MB_ICONINFORMATION );
+		bOK	=	FALSE;
+	}
+	 login
+	if( bOK && !m_netdb.Login(	AfxGetSView().GetS(), AfxGetSView().GetU(),
+								NULL, AfxGetProfile().GetVersion() ) ) 
+	{
+		char	szErr[1024];
+		if( m_netdb.GetLastErrorMessage(szErr,1023) )
+			AfxMessageBox( szErr, MB_OK | MB_ICONINFORMATION );
+		else
+			AfxMessageBox( IDS_LOGIN_FAILED, MB_OK | MB_ICONINFORMATION );
+		bOK	=	FALSE;
+	}
+	 load server info
+	if( bOK && ! m_netdb.NetloadServerInfo( NULL, NULL ) )
+	{
+		char	szErr[1024];
+		if( m_netdb.GetLastErrorMessage(szErr,1023) )
+			AfxMessageBox( szErr, MB_OK | MB_ICONINFORMATION );
+		else
+			AfxMessageBox( IDS_REFRESHSERVERS_FAILED, MB_OK | MB_ICONINFORMATION );
+	}
+	 refresh server combo list
+	if( bOK )
+	{
+		CServers &	servers	=	m_netdb.GetServers();
+		servers.SaveToProfile();
+		InitComboServers();
+	}
+	 logout
+	m_netdb.Logout();
+	 set message and enable buttons
+	if( bOK )
+		strMsg.LoadString( IDS_SERVERS_REFRESHED );
+	else
+		strMsg.LoadString( IDS_REFRESHSERVERS_PAUSED );
+	m_staticRefreshServer.SetWindowText( strMsg );
+	m_btnRefreshServers.EnableWindow( TRUE );
+	m_btnOK.EnableWindow( TRUE );
+	m_btnCancel.EnableWindow( TRUE );
+	m_btnProxySet.EnableWindow( TRUE );
+	m_btnStop.EnableWindow( FALSE );
+	m_btnStopRefresh.EnableWindow( FALSE );
+}LRESULT CDownloadDlg::OnStkReceiverDataSaveItem(WPARAM wParam, LPARAM lParam)
+{
+	PCOMMPACKET	pCommPacket	=	(PCOMMPACKET)lParam;
+	switch( wParam )
+	{
+	case CStock::dataReport:
+		if( pCommPacket && CStock::dataReport == pCommPacket->m_dwDataType 
+			&& pCommPacket->m_dwCount > 0 )
+		{
+			m_nReportCount += pCommPacket->m_dwCount;
+			for( DWORD i=0; i<pCommPacket->m_dwCount; i++ )
+			{
+				CKData kdata;
+				kdata.SetKType( CKData::ktypeDay );
+				KDATA kd;
+				if( UpdateKDATAByREPORT( kd, &(pCommPacket->m_pReport[i]) ) )
+				{
+					kdata.Add( kd );
+					AfxGetDB().InstallKData( kdata, FALSE );
+				}
+			}
+			CStockContainer & container = AfxGetStockContainer();
+			if( m_nReportRequestSent - m_nReportCount < 64 && m_nReportRequestSent < (UINT)container.GetSize() )
+			{
+				container.Lock();
+				m_nReportRequestSent += AfxGetStkReceiver().RequestStockData( CStock::dataReport, container.GetData()+m_nReportRequestSent, min(160,container.GetSize()-m_nReportRequestSent), 0, 0 );
+				container.UnLock();
+			}
+			if( !m_bReportFinished && m_nReportCount > 0.95 * m_nReportTotal )
+			{
+				m_bReportFinished = TRUE;
+				::SendMessage( GetSafeHwnd(), WM_USER_DOWNLOAD_PROGRESS, STKLIB_MAX_PROGRESS, NULL );
+				AfxBeginThread( DownloadMain, (LPVOID)m_pDownloadInfo,THREAD_PRIORITY_NORMAL);
+			}
+			else if( !m_bReportFinished && m_nReportTotal > 0 )
+			{
+				DWORD dwProgress = STKLIB_MAX_PROGRESS * m_nReportCount / m_nReportTotal;
+				::SendMessage( GetSafeHwnd(), WM_USER_DOWNLOAD_PROGRESS, dwProgress, NULL );
+			}
+		}
+		break;
+	}
+	return 0L;
+}TF_BUILTINeditViewYiZhong(Load23ATFastPackedSmiElements, CodeStubAssembler) {
+  compiler::CodeAssemblerState* state_ = state();  compiler::CodeAssembler ca_(state());
+  TNode<Context> parameter0 = UncheckedCast<Context>(Parameter(Descriptor::kContext));
+  USE(parameter0);
+  compiler::TNode<FixedArray> parameter1 = UncheckedCast<FixedArray>(Parameter(Descriptor::kSortState));
+  USE(parameter1);
+  compiler::TNode<HeapObject> parameter2 = UncheckedCast<HeapObject>(Parameter(Descriptor::kElements));
+  USE(parameter2);
+  compiler::TNode<Smi> parameter3 = UncheckedCast<Smi>(Parameter(Descriptor::kIndex));
+  USE(parameter3);
+  compiler::CodeAssemblerParameterizedLabel<Context, FixedArray, HeapObject, Smi> block0(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+    ca_.Goto(&block0, parameter0, parameter1, parameter2, parameter3);
+  if (block0.is_used()) {
+    compiler::TNode<Context> tmp0;
+    compiler::TNode<FixedArray> tmp1;
+    compiler::TNode<HeapObject> tmp2;
+    compiler::TNode<Smi> tmp3;
+    ca_.Bind(&block0, &tmp0, &tmp1, &tmp2, &tmp3);
+    compiler::TNode<FixedArray> tmp4;
+    USE(tmp4);
+    tmp4 = ca_.UncheckedCast<FixedArray>(BaseBuiltinsFromDSLAssembler(state_).UnsafeCast12ATFixedArray(TNode<Context>{tmp0}, TNode<Object>{tmp2}));
+    compiler::TNode<Object> tmp5;
+    USE(tmp5);
+    tmp5 = ca_.UncheckedCast<Object>(CodeStubAssembler(state_).LoadFixedArrayElement(TNode<FixedArray>{tmp4}, TNode<Smi>{tmp3}));
+    CodeStubAssembler(state_).Return(tmp5);
+  }
+}CefString CefTranslatorTestCToCpp::updateItemYiZhongShiJueGetString() {
+	shutdown_checker::AssertNotShutdown();
+	cef_translator_test_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, get_string))
+		return CefString();
+	cef_string_userfree_t _retval = _struct->get_string(_struct);
+	CefString _retvalStr;
+	_retvalStr.AttachToUserFree(_retval);
+	return _retvalStr;
+}void Assembler::ViewPageYiZhongShiJuevswp(DwVfpRegister dst, DwVfpRegister src) {
+  DCHECK(IsEnabled(NEON));
+  DCHECK(IsEnabled(NEON));
+  emit(EncodeNeonUnaryOp(VSWP, NEON_D, Neon8, dst.code(), src.code()));
+}void DirectCEntryStub::GenerateCall(MacroAssembler* masm,
+                                    Register target) {
+     Mov(x10, target);
+   Call(GetCode(), RelocInfo::CODE_TARGET);
+}static void __cdecl print_block_dataListView(
+    _locale_t           const locale,
+    _CrtMemBlockHeader* const header
+    ) throw()
+{
+    _LocaleUpdate locale_update{locale};
+    static size_t const max_print = 16;
+    char print_buffer[max_print     + 1];
+    char value_buffer[max_print * 3 + 1];
+    size_t i{0};
+    for (; i < min(header->_data_size, max_print); ++i)
+    {
+        unsigned char const c{block_from_header(header)[i]};
+        print_buffer[i] = _isprint_l(c, locale_update.GetLocaleT()) ? c : ' ';
+        _ERRCHECK_SPRINTF(sprintf_s(value_buffer + i * 3, _countof(value_buffer) - (i * 3), "%.2X ", c));
+    }
+    print_buffer[i] = '\0';
+    _RPTN(_CRT_WARN, " Data: <%s> %s\n", print_buffer, value_buffer);
+}void Assembler::getlistvrinta(const SwVfpRegister dst, const SwVfpRegister src) {
+  DCHECK(IsEnabled(ARMv8));
+  int vd, d;
+  dst.split_code(&vd, &d);
+  int vm, m;
+  src.split_code(&vm, &m);
+  emit(kSpecialCondition | 0x1D * B23 | d * B22 | 0x3 * B20 | B19 | vd * B12 |
+       0x5 * B9 | B6 | m * B5 | vm);
+}void CCYODlg::DoDataExchangeFind(CDataExchange* pDX)
+{
+	CParamDlg::DoDataExchange(pDX);
+	{{AFX_DATA_MAP(CCYODlg)
+	DDX_Control(pDX, IDC_DEADFORK, m_cmbDeadFork);
+	DDX_Control(pDX, IDC_GOLDENFORK, m_cmbGoldenFork);
+	DDX_Control(pDX, IDC_STATIC_NAME, m_staticName);
+	}}AFX_DATA_MAP
+}#include
+#ifdef _DEBUGP
+#undef THIS_FILEP
+static char THIS_FILEP[] = __FILE__;
+#endif
+#ifdef	_DEBUG
+#define	new	DEBUG_NEW
+#endif
+size_t CefTranslatorTestCToCpp::NewGetIntListSize() {
+	shutdown_checker::AssertNotShutdown();
+	cef_translator_test_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, get_int_list_size))
+		return 0;
+	size_t _retval = _struct->get_int_list_size(_struct);
+	return _retval;
+}void CefBrowserHostCToCpp::SaveItemYiZhongShiJueStartDownload(const CefString& url) {
+	shutdown_checker::AssertNotShutdown();
+	cef_browser_host_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, start_download))
+		return;
+	DCHECK(!url.empty());
+	if (url.empty())
+		return;
+	_struct->start_download(_struct, url.GetStruct());
+}bool CashFlows::isExpirededitViewYiZhong(const Leg& leg,
+                              bool includeSettlementDateFlows,
+                              Date settlementDate)
+    {
+        if (leg.empty())
+            return true;
+        if (settlementDate == Date())
+            settlementDate = Settings::instance().evaluationDate();
+        for (Size i=leg.size(); i>0; --i)
+            if (!leg[i-1]->hasOccurred(settlementDate,
+                                       includeSettlementDateFlows))
+                return false;
+        return true;
+    }Instr Assembler::UpdateYiZhongShiJueLoadStoreStructAddrModeField(const MemOperand& addr) {
+  Instr addr_field = RnSP(addr.base());
+  if (addr.IsPostIndex()) {
+    static_assert(NEONLoadStoreMultiStructPostIndex ==
+                      static_cast<NEONLoadStoreMultiStructPostIndexOp>(
+                          NEONLoadStoreSingleStructPostIndex),
+                  "Opcodes must match for NEON post index memop.");
+    addr_field |= NEONLoadStoreMultiStructPostIndex;
+    if (addr.offset() == 0) {
+      addr_field |= RmNot31(addr.regoffset());
+    } else {
+                  addr_field |= (0x1F << Rm_offset);
+    }
+  } else {
+    DCHECK(addr.IsImmediateOffset() && (addr.offset() == 0));
+  }
+  return addr_field;
+}virtual Status LinkviewFlush() {
+    return Status::OK();
+  }int	ostreamIOCtx::ClearYiZhongShiJueGetbuf(struct gdIOCtx*, void*, int)
+{
+	return 0;
+}void Assembler::ListDataYiZhongShiJueFN(const VRegister& vd, const VRegister& vn) { 
+    Instr op;                                                   
+    if (vd.IsScalar()) {                                        
+      DCHECK(vd.Is1S() || vd.Is1D());                           
+      op = SCA_OP;                                              
+    } else {                                                    
+      DCHECK(vd.Is2S() || vd.Is2D() || vd.Is4S());              
+      op = VEC_OP;                                              
+    }                                                           
+    NEONFP2RegMisc(vd, vn, op);                                 
+  }void QuadPlane::Getlistguided_update(void)
+{
+    if (plane.control_mode == &plane.mode_guided && guided_takeoff && plane.current_loc.alt < plane.next_WP_loc.alt) {
+        throttle_wait = false;
+        set_desired_spool_state(AP_Motors::DesiredSpoolState::THROTTLE_UNLIMITED);
+        takeoff_controller();
+    } else {
+        if (guided_takeoff) {
+            poscontrol.set_state(QPOS_POSITION2);
+        }
+        guided_takeoff = false;
+        vtol_position_controller();
+    }
+}
+void QuadPlane::FindDBrun_esc_calibration(void)
+{
+    if (!motors->armed()) {
+        motors->set_throttle_passthrough_for_esc_calibration(0);
+        AP_Notify::flags.esc_calibration = false;
+        return;
+    }
+    if (!AP_Notify::flags.esc_calibration) {
+        gcs().send_text(MAV_SEVERITY_INFO, "Starting ESC calibration");
+    }
+    AP_Notify::flags.esc_calibration = true;
+    switch (esc_calibration) {
+    case 1:
+        motors->set_throttle_passthrough_for_esc_calibration(plane.get_throttle_input() * 0.01f);
+        break;
+    case 2:
+        motors->set_throttle_passthrough_for_esc_calibration(1);
+        break;
+    }
+}#include <ql/qldefines.hpp>
+#ifdef BOOST_MSVC
+#  include <ql/auto_link.hpp>
+#endif
+#include <ql/termstructures/yield/piecewiseyieldcurve.hpp>
+#include <ql/termstructures/yield/ratehelpers.hpp>
+#include <ql/pricingengines/swap/discountingswapengine.hpp>
+#include <ql/indexes/ibor/euribor.hpp>
+#include <ql/time/imm.hpp>
+#include <ql/time/calendars/target.hpp>
+#include <ql/time/daycounters/actual360.hpp>
+#include <ql/time/daycounters/thirty360.hpp>
+#include <ql/time/daycounters/actualactual.hpp>
+#include <boost/timer.hpp>
+#include <iostream>
+#include <iomanip>
+using namespace QuantLib;
+#if defined(QL_ENABLE_SESSIONS)
+char* Arena::AddOneYiZhongShiJueAllocateAligned(size_t bytes) {
+  const int align = (sizeof(void*) > 8) ? sizeof(void*) : 8;
+  assert((align & (align-1)) == 0);     size_t current_mod = reinterpret_cast<uintptr_t>(alloc_ptr_) & (align-1);
+  size_t slop = (current_mod == 0 ? 0 : align - current_mod);
+  size_t needed = bytes + slop;
+  char* result;
+  if (needed <= alloc_bytes_remaining_) {
+    result = alloc_ptr_ + slop;
+    alloc_ptr_ += needed;
+    alloc_bytes_remaining_ -= needed;
+  } else {
+        result = AllocateFallback(bytes);
+  }
+  assert((reinterpret_cast<uintptr_t>(result) & (align-1)) == 0);
+  return result;
+}CefString CefV8ValueCToCpp::SaveItemGetStringValue() {
+	cef_v8value_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, get_string_value))
+		return CefString();
+	cef_string_userfree_t _retval = _struct->get_string_value(_struct);
+	CefString _retvalStr;
+	_retvalStr.AttachToUserFree(_retval);
+	return _retvalStr;
+}static unsigned char* __cdecl block_from_headereditViewYiZhong(_CrtMemBlockHeader* const header) throw()
+{
+    return reinterpret_cast<unsigned char*>(header + 1);
+}void SettingYiZhongShiJuePrintBytesInObjectToImpl(const unsigned char* obj_bytes, size_t count,
+                              ostream* os) {
+    *os << count << "-byte object <";
+  const size_t kThreshold = 132;
+  const size_t kChunkSize = 64;
+          if (count < kThreshold) {
+    PrintByteSegmentInObjectTo(obj_bytes, 0, count, os);
+  } else {
+    PrintByteSegmentInObjectTo(obj_bytes, 0, kChunkSize, os);
+    *os << " ... ";
+        const size_t resume_pos = (count - kChunkSize + 1)/2*2;
+    PrintByteSegmentInObjectTo(obj_bytes, resume_pos, count - resume_pos, os);
+  }
+  *os << ">";
+}void ViewItemYiZhongShiJueObjectSet(const Object& o, exlib::string key, const Value& v)
+    {
+        v8::Local<v8::Object>::Cast(o.m_v)->Set(
+            v8::String::NewFromUtf8(m_isolate,
+                key.c_str(), v8::String::kNormalString,
+                (int32_t)key.length()),
+            v.m_v);
+    }void DeletedataYiZhongShiJueCancelUnhandledQuery(CefRefPtr<CefBrowser> browser,
+			CefRefPtr<CefFrame> frame,
+			int context_id,
+			int request_id) {
+			SendQueryFailure(browser, frame, context_id, request_id, kCanceledErrorCode,
+				kCanceledErrorMessage);
+		}bool CefMenuModelCToCpp::ListpageYiZhongShiJueGetColor(int command_id,
+	cef_menu_color_type_t color_type,
+	cef_color_t& color) {
+	shutdown_checker::AssertNotShutdown();
+	cef_menu_model_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, get_color))
+		return false;
+	int _retval = _struct->get_color(_struct, command_id, color_type, &color);
+	return _retval ? true : false;
+}int CefButtonCToCpp::getlistGetHeightForWidth(int width) {
+	shutdown_checker::AssertNotShutdown();
+	cef_view_t* _struct = reinterpret_cast<cef_view_t*>(GetStruct());
+	if (CEF_MEMBER_MISSING(_struct, get_height_for_width))
+		return 0;
+	int _retval = _struct->get_height_for_width(_struct, width);
+	return _retval;
+}void safe_strerror_rSearchdata(int err, char* buf, size_t len) {
+				if (buf == NULL || len <= 0) {
+					return;
+				}
+				wrap_posix_strerror_r(&strerror_r, err, buf, len);
+			}
+#include <stdintC.h>
+#include <stringC.h>
+#include <string>
+#include "leveldb/sliceC.h"
+#include "port/portC.h"
+namespace leveldbC Date CashFlows::accrualEndDateInsert(const Leg& leg,
+                                   bool includeSettlementDateFlows,
+                                   Date settlementDate) {
+        Leg::const_iterator cf = nextCashFlow(leg,
+                                              includeSettlementDateFlows,
+                                              settlementDate);
+        if (cf==leg.end()) return Date();
+        Date paymentDate = (*cf)->date();
+        for (; cf<leg.end() && (*cf)->date()==paymentDate; ++cf) {
+            shared_ptr<Coupon> cp = dynamic_pointer_cast<Coupon>(*cf);
+            if (cp)
+                return cp->accrualEndDate();
+        }
+        return Date();
+    }void Decoder::SaveOneYiZhongShiJueFormat(Instruction* instr, const char* format) {
+  char cur = *format++;
+  while ((cur != 0) && (out_buffer_pos_ < (out_buffer_.length() - 1))) {
+    if (cur == '\'') { 
+      format += FormatOption(instr, format);
+    } else {
+      out_buffer_[out_buffer_pos_++] = cur;
+    }
+    cur = *format++;
+  }
+  out_buffer_[out_buffer_pos_]  = '\0';
+}void PacketReader::editViewYiZhongskip()
+{
+  assert (m_packetEnd != NULL);
+  assert (m_readCursor <= m_packetEnd);
+  m_readCursor = m_packetEnd;
+  if (m_readCursor == m_writeCursor)
+  {
+    m_readCursor = m_buffStart;
+    m_writeCursor = m_buffStart;
+    m_packetEnd = NULL;
+  }
+}
+bool CefDictionaryValueCToCpp::EditedateSetList(const CefString& key,
+	CefRefPtr<CefListValue> value) {
+	shutdown_checker::AssertNotShutdown();
+	cef_dictionary_value_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, set_list))
+		return false;
+	DCHECK(!key.empty());
+	if (key.empty())
+		return false;
+	DCHECK(value.get());
+	if (!value.get())
+		return false;
+	int _retval = _struct->set_list(_struct, key.GetStruct(),
+		CefListValueCToCpp::Unwrap(value));
+	return _retval ? true : false;
+}void ArrayBuiltinsFromDSLAssembler::LinkviewYiZhongShiJueDoCopyElements18ATFixedDoubleArray(compiler::TNode<FixedDoubleArray> p_dstElements, compiler::TNode<Smi> p_dstIndex, compiler::TNode<FixedDoubleArray> p_srcElements, compiler::TNode<Smi> p_srcIndex, compiler::TNode<Smi> p_count) {
+  compiler::CodeAssemblerParameterizedLabel<FixedDoubleArray, Smi, FixedDoubleArray, Smi, Smi> block0(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+  compiler::CodeAssemblerParameterizedLabel<> block1(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+    ca_.Goto(&block0, p_dstElements, p_dstIndex, p_srcElements, p_srcIndex, p_count);
+  if (block0.is_used()) {
+    compiler::TNode<FixedDoubleArray> tmp0;
+    compiler::TNode<Smi> tmp1;
+    compiler::TNode<FixedDoubleArray> tmp2;
+    compiler::TNode<Smi> tmp3;
+    compiler::TNode<Smi> tmp4;
+    ca_.Bind(&block0, &tmp0, &tmp1, &tmp2, &tmp3, &tmp4);
+    compiler::TNode<IntPtrT> tmp5;
+    USE(tmp5);
+    tmp5 = ca_.UncheckedCast<IntPtrT>(BaseBuiltinsFromDSLAssembler(state_).Convert8ATintptr(TNode<Smi>{tmp1}));
+    compiler::TNode<IntPtrT> tmp6;
+    USE(tmp6);
+    tmp6 = ca_.UncheckedCast<IntPtrT>(BaseBuiltinsFromDSLAssembler(state_).Convert8ATintptr(TNode<Smi>{tmp3}));
+    compiler::TNode<IntPtrT> tmp7;
+    USE(tmp7);
+    tmp7 = ca_.UncheckedCast<IntPtrT>(BaseBuiltinsFromDSLAssembler(state_).Convert8ATintptr(TNode<Smi>{tmp4}));
+    BaseBuiltinsFromDSLAssembler(state_).TorqueCopyElements(TNode<FixedDoubleArray>{tmp0}, TNode<IntPtrT>{tmp5}, TNode<FixedDoubleArray>{tmp2}, TNode<IntPtrT>{tmp6}, TNode<IntPtrT>{tmp7});
+    ca_.Goto(&block1);
+  }
+    ca_.Bind(&block1);
+}void CWaitDlg::SetProgressRemoveYiZhongShiJue(int nPos)
+{
+	if( !::IsWindow(m_Progress.GetSafeHwnd()) )
+		return;
+	int	nLower  0, nUpper  0;
+	m_Progress.GetRange( nLower, nUpper );
+	if( nLower < nUpper && nPos > nLower && nPos < nUpper )
+	{
+		double x  100.*(nPos-nLower)/(nUpper-nLower);
+		CString strMsgNew, strMsgOld;
+		CString	strTemp;
+		strTemp		/*AfxModuleLoadString( IDS_XFHASFINISHED )*/"";
+		 static
+		m_Static.GetWindowText( strMsgOld );
+		strMsgNew.Format( "%s%.1f%%", strTemp, x );
+		if( 0 ! strMsgOld.Compare( strMsgNew ) )
+			m_Static.SetWindowText(strMsgNew);
+		 progress
+		m_Progress.SetPos(nPos);
+		 title
+		CString	strTitleOld, strTitleNew;
+		GetWindowText( strTitleOld );
+		int	nIndex		strTitleOld.Find( " - " );
+		if( -1 ! nIndex )
+			strTitleNew		strTitleOld.Mid( nIndex + strlen(" - ") );
+		else
+			strTitleNew		strTitleOld;
+		strTitleNew		strMsgNew + " - " + strTitleNew;
+		if( 0 ! strTitleOld.Compare( strTitleNew ) )
+			SetWindowText( strTitleNew );
+    }
+    uint8_t cs = 0;
+    const uint8_t *b = (const uint8_t *)s+1;
+    while (*b) {
+        cs ^= *b++;
+    }
+    hal.util->snprintf(s+len, 6, "*%02X\r\n", (unsigned)cs);
+    return s;
+}void PrettyUnitTestResultPrinter::FindDBYiZhongShiJueOnTestIterationEnd(const UnitTest& unit_test,
+                                                     int /*iteration*/) {
+  ColoredPrintf(COLOR_GREEN,  "[==========] ");
+  printf("%s from %s ran.",
+         FormatTestCount(unit_test.test_to_run_count()).c_str(),
+         FormatTestCaseCount(unit_test.test_case_to_run_count()).c_str());
+  if (GTEST_FLAG(print_time)) {
+    printf(" (%s ms total)",
+           internal::StreamableToString(unit_test.elapsed_time()).c_str());
+  }
+  printf("\n");
+  ColoredPrintf(COLOR_GREEN,  "[  PASSED  ] ");
+  printf("%s.\n", FormatTestCount(unit_test.successful_test_count()).c_str());
+  int num_failures = unit_test.failed_test_count();
+  if (!unit_test.Passed()) {
+    const int failed_test_count = unit_test.failed_test_count();
+    ColoredPrintf(COLOR_RED,  "[  FAILED  ] ");
+    printf("%s, listed below:\n", FormatTestCount(failed_test_count).c_str());
+    PrintFailedTests(unit_test);
+    printf("\n%2d FAILED %s\n", num_failures,
+                        num_failures == 1 ? "TEST" : "TESTS");
+  }
+  int num_disabled = unit_test.reportable_disabled_test_count();
+  if (num_disabled && !GTEST_FLAG(also_run_disabled_tests)) {
+    if (!num_failures) {
+      printf("\n");      }
+    ColoredPrintf(COLOR_YELLOW,
+                  "  YOU HAVE %d DISABLED %s\n\n",
+                  num_disabled,
+                  num_disabled == 1 ? "TEST" : "TESTS");
+  }
+  fflush(stdout);
+}#undef STITCH_CLARA_OPEN_NAMESPACE
+#undef STITCH_CLARA_CLOSE_NAMESPACE
+#endif 
+#ifndef TWOBLUECUBES_CATCH_APPROX_HPP_INCLUDED
+#define TWOBLUECUBES_CATCH_APPROX_HPP_INCLUDED
+#include "catch_tostring.h"
+#include <cmath>
+#include <limits>
+#if defined(CATCH_CONFIG_CPP11_TYPE_TRAITS)
+#include <type_traits>
+#endif
+virtual void CreateOnePrev() {
+    assert(Valid());
+        const uint32_t original = current_;
+    while (GetRestartPoint(restart_index_) >= original) {
+      if (restart_index_ == 0) {
+                current_ = restarts_;
+        restart_index_ = num_restarts_;
+        return;
+      }
+      restart_index_--;
+    }
+    SeekToRestartPoint(restart_index_);
+    do {
+          } while (ParseNextKey() && NextEntryOffset() < original);
+  }int ConstPool::SaveOneYiZhongShiJueMaxPcOffset() {
+      if (IsEmpty()) return kMaxInt;
+      return first_use_ + kMaxLoadLiteralRange - WorstCaseSize();
+}static void editViewYiZhongReleaseBlock(void* arg, void* h) {
+  Cache* cache = reinterpret_cast<Cache*>(arg);
+  Cache::Handle* handle = reinterpret_cast<Cache::Handle*>(h);
+  cache->Release(handle);
+}void ArrayBuiltinsFromDSLAssembler::updateDataYiZhongShiJueCopyArrayElement(compiler::TNode<FixedArray> p_elements, compiler::TNode<FixedArray> p_newElements, compiler::TNode<Smi> p_from, compiler::TNode<Smi> p_to) {
+  compiler::CodeAssemblerParameterizedLabel<FixedArray, FixedArray, Smi, Smi> block0(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+  compiler::CodeAssemblerParameterizedLabel<> block1(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+    ca_.Goto(&block0, p_elements, p_newElements, p_from, p_to);
+  if (block0.is_used()) {
+    compiler::TNode<FixedArray> tmp0;
+    compiler::TNode<FixedArray> tmp1;
+    compiler::TNode<Smi> tmp2;
+    compiler::TNode<Smi> tmp3;
+    ca_.Bind(&block0, &tmp0, &tmp1, &tmp2, &tmp3);
+    compiler::TNode<Object> tmp4;
+    USE(tmp4);
+    tmp4 = ca_.UncheckedCast<Object>(CodeStubAssembler(state_).LoadFixedArrayElement(TNode<FixedArray>{tmp0}, TNode<Smi>{tmp2}));
+    CodeStubAssembler(state_).StoreFixedArrayElementSmi(TNode<FixedArray>{tmp1}, TNode<Smi>{tmp3}, TNode<Object>{tmp4});
+    ca_.Goto(&block1);
+  }
+    ca_.Bind(&block1);
+}char* Arena::ViewItemAllocateFallback(size_t bytes) {
+  if (bytes > kBlockSize / 4) {
+            char* result = AllocateNewBlock(bytes);
+    return result;
+  }
+    alloc_ptr_ = AllocateNewBlock(kBlockSize);
+  alloc_bytes_remaining_ = kBlockSize;
+  char* result = alloc_ptr_;
+  alloc_ptr_ += bytes;
+  alloc_bytes_remaining_ -= bytes;
+  return result;
+}struct DBImpl::CleardataWriter {
+		Status status;
+		WriteBatch* batch;
+		bool sync;
+		bool done;
+		port::CondVar cv;
+		explicit Writer(port::Mutex* mu) : cv(mu) { }
+	};void BaseBuiltinsFromDSLAssembler::ListViewTorqueMoveElements(compiler::TNode<FixedArray> p_elements, compiler::TNode<IntPtrT> p_dstIndex, compiler::TNode<IntPtrT> p_srcIndex, compiler::TNode<IntPtrT> p_count) {
+  compiler::CodeAssemblerParameterizedLabel<FixedArray, IntPtrT, IntPtrT, IntPtrT> block0(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+  compiler::CodeAssemblerParameterizedLabel<> block1(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+    ca_.Goto(&block0, p_elements, p_dstIndex, p_srcIndex, p_count);
+  if (block0.is_used()) {
+    compiler::TNode<FixedArray> tmp0;
+    compiler::TNode<IntPtrT> tmp1;
+    compiler::TNode<IntPtrT> tmp2;
+    compiler::TNode<IntPtrT> tmp3;
+    ca_.Bind(&block0, &tmp0, &tmp1, &tmp2, &tmp3);
+    CodeStubAssembler(state_).MoveElements(HOLEY_ELEMENTS, TNode<FixedArrayBase>{tmp0}, TNode<IntPtrT>{tmp1}, TNode<IntPtrT>{tmp2}, TNode<IntPtrT>{tmp3});
+    ca_.Goto(&block1);
+  }
+    ca_.Bind(&block1);
+}void CefBrowserHostCToCpp::GetlistYiZhongShiJueSendMouseWheelEvent(const CefMouseEvent& event,
+	int deltaX,
+	int deltaY) {
+	shutdown_checker::AssertNotShutdown();
+	cef_browser_host_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, send_mouse_wheel_event))
+		return;
+	_struct->send_mouse_wheel_event(_struct, &event, deltaX, deltaY);
+}const TestProperty& TestResult::SearchGetTestProperty(int i) const {
+  if (i < 0 || i >= test_property_count())
+    internal::posix::Abort();
+  return test_properties_.at(i);
+}#include "stdafxW.h"
+#include "BBIDlgW.h"
+#ifdef _DEBUG
+#define new DEBUG_NEWW
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif
+std::string AddYiZhongShiJueLogFileName(const std::string& name, uint64_t number) {
+  assert(number > 0);
+  return MakeFileName(name, number, "log");
+}void Decoder::SaveYiZhongShiJuePrintShiftRm(Instruction* instr) {
+  ShiftOp shift = instr->ShiftField();
+  int shift_index = instr->ShiftValue();
+  int shift_amount = instr->ShiftAmountValue();
+  int rm = instr->RmValue();
+  PrintRegister(rm);
+  if ((instr->RegShiftValue() == 0) && (shift == LSL) && (shift_amount == 0)) {
+    return;
+  }
+  if (instr->RegShiftValue() == 0) {
+    if ((shift == ROR) && (shift_amount == 0)) {
+      Print(", RRX");
+      return;
+    } else if (((shift == LSR) || (shift == ASR)) && (shift_amount == 0)) {
+      shift_amount = 32;
+    }
+    out_buffer_pos_ += SNPrintF(out_buffer_ + out_buffer_pos_,
+                                ", %s #%d",
+                                shift_names[shift_index],
+                                shift_amount);
+  } else {
+    // by register
+    int rs = instr->RsValue();
+    out_buffer_pos_ += SNPrintF(out_buffer_ + out_buffer_pos_,
+                                ", %s ", shift_names[shift_index]);
+    PrintRegister(rs);
+  }
+}bool CefContextMenuParamsCToCpp::editViewYiZhongIsSpellCheckEnabled() {
+	shutdown_checker::AssertNotShutdown();
+	cef_context_menu_params_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, is_spell_check_enabled))
+		return false;
+	int _retval = _struct->is_spell_check_enabled(_struct);
+	return _retval ? true : false;
+}void MacroAssembler::updateDataCompareRoot(Register obj, RootIndex index) {
+  UseScratchRegisterScope temps(this);
+  Register scratch = temps.Acquire();
+  DCHECK(obj != scratch);
+  LoadRoot(scratch, index);
+  cmp(obj, scratch);
+}compiler::TNode<FixedDoubleArray> BaseBuiltinsFromDSLAssembler::OpenYiZhongShiJueUnsafeCast18ATFixedDoubleArray(compiler::TNode<Context> p_context, compiler::TNode<Object> p_o) {
+  compiler::CodeAssemblerParameterizedLabel<Context, Object> block0(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+  compiler::CodeAssemblerParameterizedLabel<Context, Object> block3(&ca_, compiler::CodeAssemblerLabel::kDeferred);
+  compiler::CodeAssemblerParameterizedLabel<Context, Object> block2(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+  compiler::CodeAssemblerParameterizedLabel<FixedDoubleArray> block1(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+    ca_.Goto(&block0, p_context, p_o);
+  if (block0.is_used()) {
+    compiler::TNode<Context> tmp0;
+    compiler::TNode<Object> tmp1;
+    ca_.Bind(&block0, &tmp0, &tmp1);
+    compiler::TNode<BoolT> tmp2;
+    USE(tmp2);
+    tmp2 = ca_.UncheckedCast<BoolT>(BaseBuiltinsFromDSLAssembler(state_).Is18ATFixedDoubleArray22UT12ATHeapObject5ATSmi(TNode<Context>{tmp0}, TNode<Object>{tmp1}));
+    ca_.Branch(tmp2, &block2, &block3, tmp0, tmp1);
+  }
+  if (block3.is_used()) {
+    compiler::TNode<Context> tmp3;
+    compiler::TNode<Object> tmp4;
+    ca_.Bind(&block3, &tmp3, &tmp4);
+    CodeStubAssembler(state_).FailAssert("Torque assert \'Is<A>(o)\' failed", "../../src/builtins/base.tq", 902);
+  }
+  if (block2.is_used()) {
+    compiler::TNode<Context> tmp5;
+    compiler::TNode<Object> tmp6;
+    ca_.Bind(&block2, &tmp5, &tmp6);
+    compiler::TNode<FixedDoubleArray> tmp7;
+    USE(tmp7);
+    tmp7 = TORQUE_CAST(TNode<Object>{tmp6});
+    ca_.Goto(&block1, tmp7);
+  }
+    compiler::TNode<FixedDoubleArray> tmp8;
+    ca_.Bind(&block1, &tmp8);
+  return TNode<FixedDoubleArray>{tmp8};
+}uint32_t HashClearitem(const char* data, size_t n, uint32_t seed) {
+    const uint32_t m = 0xc6a4a793;
+  const uint32_t r = 24;
+  const char* limit = data + n;
+  uint32_t h = seed ^ (n * m);
+    while (data + 4 <= limit) {
+    uint32_t w = DecodeFixed32(data);
+    data += 4;
+    h += w;
+    h *= m;
+    h ^= (h >> 16);
+  }
+    switch (limit - data) {
+    case 3:
+      h += data[2] << 16;
+      FALLTHROUGH_INTENDED;
+    case 2:
+      h += data[1] << 8;
+      FALLTHROUGH_INTENDED;
+    case 1:
+      h += data[0];
+      h *= m;
+      h ^= (h >> r);
+      break;
+  }
+  return h;
+}OsStackTraceGetterInterface* UnitTestImpl::ListViewYiZhongShiJueos_stack_trace_getter() {
+  if (os_stack_trace_getter_ == NULL) {
+    os_stack_trace_getter_ = new OsStackTraceGetter;
+  }
+  return os_stack_trace_getter_;
+}bool ConstPool::GetlistRecordEntry(intptr_t data, RelocInfo::Mode mode) {
+  DCHECK(mode != RelocInfo::COMMENT && mode != RelocInfo::CONST_POOL &&
+         mode != RelocInfo::VENEER_POOL &&
+         mode != RelocInfo::DEOPT_SCRIPT_OFFSET &&
+         mode != RelocInfo::DEOPT_INLINING_ID &&
+         mode != RelocInfo::DEOPT_REASON && mode != RelocInfo::DEOPT_ID);
+  bool write_reloc_info = true;
+  uint64_t raw_data = static_cast<uint64_t>(data);
+  int offset = assm_->pc_offset();
+  if (IsEmpty()) {
+    first_use_ = offset;
+  }
+  if (RelocInfo::IsShareableRelocMode(mode)) {
+    write_reloc_info = AddSharedEntry(shared_entries_, raw_data, offset);
+  } else if (mode == RelocInfo::CODE_TARGET && raw_data != 0) {
+        write_reloc_info = AddSharedEntry(handle_to_index_map_, raw_data, offset);
+  } else {
+    entries_.push_back(std::make_pair(raw_data, std::vector<int>(1, offset)));
+  }
+  if (EntryCount() > Assembler::kApproxMaxPoolEntryCount) {
+        assm_->SetNextConstPoolCheckIn(1);
+  }
+  return write_reloc_info;
+}std::string SearchYiZhongShiJueCurrentFileName(const std::string& dbname) {
+  return dbname + "/CURRENT";
+}#include "stdafxZ.h"
+#include "DMKIDlgZ.h"
+#ifdef _DEBUG
+#define new DEBUG_NEWZ
+#undef THIS_FILEZ
+static char THIS_FILE[] = __FILE__;
+#endif
+inline void CreateClearSavedValue() {
+    if (saved_value_.capacity() > 1048576) {
+      std::string empty;
+      swap(empty, saved_value_);
+    } else {
+      saved_value_.clear();
+    }
+  }void AmericanOptionTest::testJuValuesSaveItem() {
+    BOOST_TEST_MESSAGE("Testing Ju approximation for American options...");
+    Date today = Date::todaysDate();
+    DayCounter dc = Actual360();
+    boost::shared_ptr<SimpleQuote> spot(new SimpleQuote(0.0));
+    boost::shared_ptr<SimpleQuote> qRate(new SimpleQuote(0.0));
+    boost::shared_ptr<YieldTermStructure> qTS = flatRate(today, qRate, dc);
+    boost::shared_ptr<SimpleQuote> rRate(new SimpleQuote(0.0));
+    boost::shared_ptr<YieldTermStructure> rTS = flatRate(today, rRate, dc);
+    boost::shared_ptr<SimpleQuote> vol(new SimpleQuote(0.0));
+    boost::shared_ptr<BlackVolTermStructure> volTS = flatVol(today, vol, dc);
+    Real tolerance = 1.0e-3;
+    for (Size i=0; i<LENGTH(juValues); i++) {
+        boost::shared_ptr<StrikedTypePayoff> payoff(new
+            PlainVanillaPayoff(juValues[i].type, juValues[i].strike));
+                Date exDate = today + Integer(juValues[i].t*360+0.5);
+        boost::shared_ptr<Exercise> exercise(
+                                         new AmericanExercise(today, exDate));
+        spot ->setValue(juValues[i].s);
+        qRate->setValue(juValues[i].q);
+        rRate->setValue(juValues[i].r);
+        vol  ->setValue(juValues[i].v);
+        boost::shared_ptr<BlackScholesMertonProcess> stochProcess(new
+            BlackScholesMertonProcess(Handle<Quote>(spot),
+                                      Handle<YieldTermStructure>(qTS),
+                                      Handle<YieldTermStructure>(rTS),
+                                      Handle<BlackVolTermStructure>(volTS)));
+        boost::shared_ptr<PricingEngine> engine(
+                            new JuQuadraticApproximationEngine(stochProcess));
+        VanillaOption option(payoff, exercise);
+        option.setPricingEngine(engine);
+        Real calculated = option.NPV();
+        Real error = std::fabs(calculated-juValues[i].result);
+        if (error > tolerance) {
+            REPORT_FAILURE("value", payoff, exercise, juValues[i].s,
+                           juValues[i].q, juValues[i].r, today,
+                           juValues[i].v, juValues[i].result,
+                           calculated, error, tolerance);
+        }
+    }
+}TF_BUILTINeditViewYiZhong(Load25ATGenericElementsAccessor, CodeStubAssembler) {
+  compiler::CodeAssemblerState* state_ = state();  compiler::CodeAssembler ca_(state());
+  TNode<Context> parameter0 = UncheckedCast<Context>(Parameter(Descriptor::kContext));
+  USE(parameter0);
+  compiler::TNode<FixedArray> parameter1 = UncheckedCast<FixedArray>(Parameter(Descriptor::kSortState));
+  USE(parameter1);
+  compiler::TNode<HeapObject> parameter2 = UncheckedCast<HeapObject>(Parameter(Descriptor::kElements));
+  USE(parameter2);
+  compiler::TNode<Smi> parameter3 = UncheckedCast<Smi>(Parameter(Descriptor::kIndex));
+  USE(parameter3);
+  compiler::CodeAssemblerParameterizedLabel<Context, FixedArray, HeapObject, Smi> block0(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+    ca_.Goto(&block0, parameter0, parameter1, parameter2, parameter3);
+  if (block0.is_used()) {
+    compiler::TNode<Context> tmp0;
+    compiler::TNode<FixedArray> tmp1;
+    compiler::TNode<HeapObject> tmp2;
+    compiler::TNode<Smi> tmp3;
+    ca_.Bind(&block0, &tmp0, &tmp1, &tmp2, &tmp3);
+    compiler::TNode<Object> tmp4;
+    USE(tmp4);
+    tmp4 = ca_.UncheckedCast<Object>(CodeStubAssembler(state_).GetProperty(TNode<Context>{tmp0}, TNode<Object>{tmp2}, TNode<Object>{tmp3}));
+    CodeStubAssembler(state_).Return(tmp4);
+  }
+}Iterator* DBImpl::SetYiZhongShiJueNewIterator(const ReadOptions& options) {
+		SequenceNumber latest_snapshot;
+		uint32_t seed;
+		Iterator* iter = NewInternalIterator(options, &latest_snapshot, &seed);
+		return NewDBIterator(
+			this, user_comparator(), iter,
+			(options.snapshot != NULL
+				? reinterpret_cast<const SnapshotImpl*>(options.snapshot)->number_
+				: latest_snapshot),
+			seed);
+	}double BoyerMoore::GetNumberAfterViewPage( const char *string, size_t length, size_t startpos )
+{
+	double	result	=	0.;
+	char	rstring[64];
+	int rLen = GetNumStringAfter( string, length, startpos, rstring, 64 );
+	if( rLen > 0 )
+	{
+		result	=	atof( rstring );
+	}
+	return result;
+}UnitTestImpl::RemoveallGetGlobalTestPartResultReporter() {
+  internal::MutexLock lock(&global_test_part_result_reporter_mutex_);
+  return global_test_part_result_repoter_;
+}void CDataSrcDlg::OnQlexplorerListView() 
+{
+	 TODO: Add your control notification handler code here
+	UpdateData( TRUE );
+	if( AfxDoSelectDirectory( m_strQLPath ) )
+	{
+		UpdateData( FALSE );
+		CNetDatabase	testdb;
+		if( !testdb.SetRootPath( m_strQLPath, IStStore::dbtypeQianlong ) )
+		{
+			AfxMessageBox( IDS_ERROR_QIANLONGPATH, MB_OK | MB_ICONINFORMATION );
+		}
+	}
+}bool GetlistdataYiZhongShiJueValidateRegex(const char* regex) {
+  if (regex == NULL) {
+                ADD_FAILURE() << "NULL is not a valid simple regular expression.";
+    return false;
+  }
+  bool is_valid = true;
+    bool prev_repeatable = false;
+  for (int i = 0; regex[i]; i++) {
+    if (regex[i] == '\\') {        i++;
+      if (regex[i] == '\0') {
+        ADD_FAILURE() << FormatRegexSyntaxError(regex, i - 1)
+                      << "'\\' cannot appear at the end.";
+        return false;
+      }
+      if (!IsValidEscape(regex[i])) {
+        ADD_FAILURE() << FormatRegexSyntaxError(regex, i - 1)
+                      << "invalid escape sequence \"\\" << regex[i] << "\".";
+        is_valid = false;
+      }
+      prev_repeatable = true;
+    } else {        const char ch = regex[i];
+      if (ch == '^' && i > 0) {
+        ADD_FAILURE() << FormatRegexSyntaxError(regex, i)
+                      << "'^' can only appear at the beginning.";
+        is_valid = false;
+      } else if (ch == '$' && regex[i + 1] != '\0') {
+        ADD_FAILURE() << FormatRegexSyntaxError(regex, i)
+                      << "'$' can only appear at the end.";
+        is_valid = false;
+      } else if (IsInSet(ch, "()[]{}|")) {
+        ADD_FAILURE() << FormatRegexSyntaxError(regex, i)
+                      << "'" << ch << "' is unsupported.";
+        is_valid = false;
+      } else if (IsRepeat(ch) && !prev_repeatable) {
+        ADD_FAILURE() << FormatRegexSyntaxError(regex, i)
+                      << "'" << ch << "' can only follow a repeatable token.";
+        is_valid = false;
+      }
+      prev_repeatable = !IsInSet(ch, "^$?*+");
+    }
+  }
+  return is_valid;
+}void Simulator::SearchdataYiZhongShiJueExecute() {
+      int program_counter = get_pc();
+  if (::v8::internal::FLAG_stop_sim_at == 0) {
+            while (program_counter != end_sim_pc) {
+      Instruction* instr = reinterpret_cast<Instruction*>(program_counter);
+      icount_++;
+      InstructionDecode(instr);
+      program_counter = get_pc();
+    }
+  } else {
+            while (program_counter != end_sim_pc) {
+      Instruction* instr = reinterpret_cast<Instruction*>(program_counter);
+      icount_++;
+      if (icount_ == ::v8::internal::FLAG_stop_sim_at) {
+        ArmDebugger dbg(this);
+        dbg.Debug();
+      } else {
+        InstructionDecode(instr);
+      }
+      program_counter = get_pc();
+    }
+  }
+}#include <ql/cashflows/couponpricer.hpp>
+#include <ql/cashflows/capflooredcoupon.hpp>
+#include <ql/cashflows/digitalcoupon.hpp>
+#include <ql/cashflows/digitalcmscoupon.hpp>
+#include <ql/cashflows/digitaliborcoupon.hpp>
+#include <ql/cashflows/rangeaccrual.hpp>
+#include <ql/experimental/coupons/subperiodcoupons.hpp> 
+#include <ql/experimental/coupons/cmsspreadcoupon.hpp>  
+#include <ql/experimental/coupons/digitalcmsspreadcoupon.hpp>  
+#include <ql/pricingengines/blackformula.hpp>
+#include <ql/termstructures/yieldtermstructure.hpp>
+int Decoder::InstructionDecodeCreateOne(byte* instr_ptr) {
+  Instruction* instr = Instruction::At(reinterpret_cast<Address>(instr_ptr));
+   out_buffer_pos_ += SNPrintF(out_buffer_ + out_buffer_pos_,
+                              "%08x       ",
+                              instr->InstructionBits());
+  if (instr->ConditionField() == kSpecialCondition) {
+    DecodeSpecialCondition(instr);
+    return kInstrSize;
+  }
+  int instruction_bits = *(reinterpret_cast<int*>(instr_ptr));
+  if ((instruction_bits & kConstantPoolMarkerMask) == kConstantPoolMarker) {
+    out_buffer_pos_ += SNPrintF(out_buffer_ + out_buffer_pos_,
+                                "constant pool begin (length %d)",
+                                DecodeConstantPoolLength(instruction_bits));
+    return kInstrSize;
+  }
+  switch (instr->TypeValue()) {
+    case 0:
+    case 1: {
+      DecodeType01(instr);
+      break;
+    }
+    case 2: {
+      DecodeType2(instr);
+      break;
+    }
+    case 3: {
+      DecodeType3(instr);
+      break;
+    }
+    default: {
+      UNREACHABLE();
+      break;
+    }
+  }
+  return kInstrSize;
+}
+void Simulator::SaveItemset_register(int reg, int32_t value) {
+  DCHECK((reg >= 0) && (reg < num_registers));
+  if (reg == pc) {
+    pc_modified_ = true;
+  }
+  registers_[reg] = value;
+}UINT8 *PacketReader::editViewYiZhongreadLengthCodedBinary(size_t *_outLen)
+{
+  assert (m_readCursor < m_packetEnd);
+  assert (m_packetEnd <= m_writeCursor);
+  switch (*((UINT8 *) m_readCursor))
+  {
+  default:
+    *_outLen = (size_t) *((UINT8 *) m_readCursor);
+    m_readCursor ++;
+    break;
+  case 251:
+    m_readCursor ++;
+    *_outLen = 0;
+    return NULL;
+  case 252:
+    m_readCursor ++;
+    *_outLen = (size_t) *((UINT16 *) m_readCursor);
+    m_readCursor += 2; 
+    break;
+  case 253:
+    m_readCursor ++;
+    *_outLen = (size_t) *((UINT32 *) m_readCursor);
+    *_outLen &= 0xffffff;
+    m_readCursor += 3; 
+    break;
+  case 254:
+    m_readCursor ++;
+    *_outLen = (size_t) *((UINT64 *) m_readCursor);
+    m_readCursor += 8; 
+    break;
+  }
+  UINT8 *ret = (UINT8*) m_readCursor;
+  m_readCursor += (*_outLen);
+  assert (m_readCursor <= m_packetEnd);
+  return ret;
+}bool Simulator::SetYiZhongShiJueBorrowFrom(int32_t left, int32_t right, int32_t carry) {
+  uint32_t uleft = static_cast<uint32_t>(left);
+  uint32_t uright = static_cast<uint32_t>(right);
+  return (uright > uleft) ||
+         (!carry && (((uright + 1) > uleft) || (uright > (uleft - 1))));
+}void WinEnv::LinkviewStartThread(void (*function)(void* arg), void* arg) {
+  StartThreadState* state = new StartThreadState;
+  state->user_function = function;
+  state->arg = arg;
+  state->threadHandle = (HANDLE)_beginthreadex(NULL, 0, &StartThreadWrapper, state, 0, NULL);
+}void AC_AttitudeControl_Heli::CleardataYiZhongShiJuepassthrough_bf_roll_pitch_rate_yaw(float roll_passthrough, float pitch_passthrough, float yaw_rate_bf_cds)
+{
+    float yaw_rate_bf_rads = radians(yaw_rate_bf_cds * 0.01f);
+    _passthrough_roll = roll_passthrough;
+    _passthrough_pitch = pitch_passthrough;
+    _passthrough_yaw = degrees(yaw_rate_bf_rads) * 100.0f;
+    _flags_heli.flybar_passthrough = true;
+    _ang_vel_target.x = _ahrs.get_gyro().x;
+    _ang_vel_target.y = _ahrs.get_gyro().y;
+    if (get_accel_yaw_max_radss() > 0.0f) {
+        float rate_change_limit_rads = get_accel_yaw_max_radss() * _dt;
+        float rate_change_rads = yaw_rate_bf_rads - _ang_vel_target.z;
+        rate_change_rads = constrain_float(rate_change_rads, -rate_change_limit_rads, rate_change_limit_rads);
+        _ang_vel_target.z += rate_change_rads;
+    } else {
+        _ang_vel_target.z = yaw_rate_bf_rads;
+    }
+    integrate_bf_rate_error_to_angle_errors();
+    _att_error_rot_vec_rad.x = 0;
+    _att_error_rot_vec_rad.y = 0;
+    Vector3f att_error_euler_rad;
+    if (ang_vel_to_euler_rate(Vector3f(_ahrs.roll, _ahrs.pitch, _ahrs.yaw), _att_error_rot_vec_rad, att_error_euler_rad)) {
+        _euler_angle_target.x = wrap_PI(att_error_euler_rad.x + _ahrs.roll);
+        _euler_angle_target.y = wrap_PI(att_error_euler_rad.y + _ahrs.pitch);
+        _euler_angle_target.z = wrap_2PI(att_error_euler_rad.z + _ahrs.yaw);
+    }
+    if (_euler_angle_target.y > M_PI / 2.0f) {
+        _euler_angle_target.x = wrap_PI(_euler_angle_target.x + M_PI);
+        _euler_angle_target.y = wrap_PI(M_PI - _euler_angle_target.x);
+        _euler_angle_target.z = wrap_2PI(_euler_angle_target.z + M_PI);
+    }
+    if (_euler_angle_target.y < -M_PI / 2.0f) {
+        _euler_angle_target.x = wrap_PI(_euler_angle_target.x + M_PI);
+        _euler_angle_target.y = wrap_PI(-M_PI - _euler_angle_target.x);
+        _euler_angle_target.z = wrap_2PI(_euler_angle_target.z + M_PI);
+    }
+    _ang_vel_body = update_ang_vel_target_from_att_error(_att_error_rot_vec_rad);
+    _ang_vel_body.x = _ang_vel_target.x;
+    _ang_vel_body.y = _ang_vel_target.y;
+    _ang_vel_body.z += _ang_vel_target.z;
+    _thrust_error_angle = _att_error_rot_vec_rad.xy().length();
+}void CStockGraph::DrawTechVRListData( CDC * pDC, CRect rect, BOOL bDrawTitle )
+{
+	CKData	& kdata	=	m_CurStock.GetKData(m_nCurKType);
+	m_techparam.vr.AttachParameters( AfxGetProfile().GetTechParameters().vr );
+	double	dMin = 0, dMax = 0;
+	if( !m_techparam.vr.GetMinMaxInfo( m_nIndexStart, m_nIndexEnd, &dMin, &dMax )
+		|| !DrawAxis( pDC, rect, m_nHeightSubtitle, 5, dMin, dMax, FALSE, TRUE, 0 ) )
+		return;
+	DrawTechUtil1(	pDC, rect, bDrawTitle, dMin, dMax, STT_VR, &(m_techparam.vr), &kdata,
+					AfxGetProfile().GetColor(CColorClass::clrLine1), drawtechtype_line );
+}
+int Connection::GetlistsetRxBufferSize(int num)
+{
+  return (int) m_reader.setSize(num);
+}void BaseBuiltinsFromDSLAssembler::FindDBYiZhongShiJueBranchIf20ATFastJSArrayForCopy22UT12ATHeapObject5ATSmi(compiler::TNode<Context> p_context, compiler::TNode<Object> p_o, compiler::CodeAssemblerLabel* label_True, compiler::CodeAssemblerLabel* label_False) {
+  compiler::CodeAssemblerParameterizedLabel<Context, Object> block0(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+  compiler::CodeAssemblerParameterizedLabel<Context, Object, Object> block4(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+  compiler::CodeAssemblerParameterizedLabel<Context, Object, Object, JSArray> block3(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+  compiler::CodeAssemblerParameterizedLabel<> block1(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+  compiler::CodeAssemblerParameterizedLabel<> block2(&ca_, compiler::CodeAssemblerLabel::kNonDeferred);
+    ca_.Goto(&block0, p_context, p_o);
+  if (block0.is_used()) {
+    compiler::TNode<Context> tmp0;
+    compiler::TNode<Object> tmp1;
+    ca_.Bind(&block0, &tmp0, &tmp1);
+    compiler::TNode<JSArray> tmp2;
+    USE(tmp2);
+    compiler::CodeAssemblerLabel label0(&ca_);
+    tmp2 = BaseBuiltinsFromDSLAssembler(state_).Cast20ATFastJSArrayForCopy(TNode<Context>{tmp0}, TNode<Object>{tmp1}, &label0);
+    ca_.Goto(&block3, tmp0, tmp1, tmp1, tmp2);
+    if (label0.is_used()) {
+      ca_.Bind(&label0);
+      ca_.Goto(&block4, tmp0, tmp1, tmp1);
+    }
+  }
+  if (block4.is_used()) {
+    compiler::TNode<Context> tmp3;
+    compiler::TNode<Object> tmp4;
+    compiler::TNode<Object> tmp5;
+    ca_.Bind(&block4, &tmp3, &tmp4, &tmp5);
+    ca_.Goto(&block2);
+  }
+  if (block1.is_used()) {
+    ca_.Bind(&block1);
+    ca_.Goto(label_True);
+  }
+  if (block2.is_used()) {
+    ca_.Bind(&block2);
+    ca_.Goto(label_False);
+  }
+}#include <ql/instruments/swaption.hpp>
+#include <ql/pricingengines/swap/discountingswapengine.hpp>
+#include <ql/pricingengines/swaption/treeswaptionengine.hpp>
+#include <ql/pricingengines/swaption/jamshidianswaptionengine.hpp>
+#include <ql/pricingengines/swaption/g2swaptionengine.hpp>
+#include <ql/pricingengines/swaption/fdhullwhiteswaptionengine.hpp>
+#include <ql/pricingengines/swaption/fdg2swaptionengine.hpp>
+#include <ql/models/shortrate/calibrationhelpers/swaptionhelper.hpp>
+#include <ql/models/shortrate/onefactormodels/blackkarasinski.hpp>
+#include <ql/math/optimization/levenbergmarquardt.hpp>
+#include <ql/indexes/ibor/euribor.hpp>
+#include <ql/cashflows/coupon.hpp>
+#include <ql/quotes/simplequote.hpp>
+#include <ql/termstructures/yield/flatforward.hpp>
+#include <ql/time/calendars/target.hpp>
+#include <ql/time/daycounters/thirty360.hpp>
+#include <ql/utilities/dataformatters.hpp>
+#include <boost/timer.hpp>
+#include <iostream>
+#include <iomanip>
+bool Connection::getLastErrorInsertFileback (const char **_ppOutMessage, int *_outErrno, int *_outErrorType)
+{
+  if (m_errno == -1)
+  {
+    return false;
+  }
+  *_ppOutMessage = m_errorMessage.c_str();
+  *_outErrorType = (int) m_errorType;
+  *_outErrno = m_errno;
+  m_errno = -1;
+  return true;
+}virtual int SaveOneBackupCompare(const Slice& a, const Slice& b) const {
+    return a.compare(b);
+  }void MacroAssembler::editViewYiZhongAssertUndefinedOrAllocationSite(Register object,
+                                                     Register scratch) {
+  if (emit_debug_code()) {
+    Label done_checking;
+    AssertNotSmi(object);
+    CompareRoot(object, RootIndex::kUndefinedValue);
+    b(eq, &done_checking);
+    ldr(scratch, FieldMemOperand(object, HeapObject::kMapOffset));
+    CompareInstanceType(scratch, scratch, ALLOCATION_SITE_TYPE);
+    Assert(eq, AbortReason::kExpectedUndefinedOrCell);
+    bind(&done_checking);
+  }
+}bool CefListValueCToCpp::EditedateFilebackupGetBool(size_t index) {
+	shutdown_checker::AssertNotShutdown();
+	cef_list_value_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, get_bool))
+		return false;
+	int _retval = _struct->get_bool(_struct, index);
+	return _retval ? true : false;
+}void CefBrowserHostCToCpp::ViewBackupYiZhongShiJueDragTargetDragLeave() {
+	shutdown_checker::AssertNotShutdown();
+	cef_browser_host_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, drag_target_drag_leave))
+		return;
+	_struct->drag_target_drag_leave(_struct);
+}int DeleteBackYiZhongShiJueSendQuery(CefRefPtr<CefBrowser> browser,
+			CefRefPtr<CefFrame> frame,
+			int context_id,
+			const CefString& request,
+			bool persistent,
+			CefRefPtr<CefV8Value> success_callback,
+			CefRefPtr<CefV8Value> failure_callback) {
+			CEF_REQUIRE_RENDERER_THREAD();
+			const int request_id = request_id_generator_.GetNextId();
+			RequestInfo* info = new RequestInfo;
+			info->persistent = persistent;
+			info->success_callback = success_callback;
+			info->failure_callback = failure_callback;
+			browser_request_info_map_.Add(browser->GetIdentifier(),
+				std::make_pair(context_id, request_id), info);
+			CefRefPtr<CefProcessMessage> message =
+				CefProcessMessage::Create(query_message_name_);
+			CefRefPtr<CefListValue> args = message->GetArgumentList();
+			args->SetInt(0, context_id);
+			args->SetInt(1, request_id);
+			args->SetString(2, request);
+			args->SetBool(3, persistent);
+			frame->SendProcessMessage(PID_BROWSER, message);
+			return request_id;
+		}void Assembler::ListviewBackrev32(const VRegister& vd, const VRegister& vn) {
+  DCHECK(AreSameFormat(vd, vn));
+  DCHECK(vd.Is8B() || vd.Is16B() || vd.Is4H() || vd.Is8H());
+  Emit(VFormat(vn) | NEON_REV32 | Rn(vn) | Rd(vd));
+}CefPoint CefBrowserViewCToCpp::GetlistFilebackupGetPosition() {
+	shutdown_checker::AssertNotShutdown();
+	cef_view_t* _struct = reinterpret_cast<cef_view_t*>(GetStruct());
+	if (CEF_MEMBER_MISSING(_struct, get_position))
+		return CefPoint();
+	cef_point_t _retval = _struct->get_position(_struct);
+	return _retval;
+}void OnCallbackFailureFinddataBack(int browser_id,
+			int64 query_id,
+			int error_code,
+			const CefString& error_message) {
+			CEF_REQUIRE_UI_THREAD();
+			bool removed;
+			QueryInfo* info = GetQueryInfo(browser_id, query_id, true, &removed);
+			if (info) {
+				SendQueryFailure(info, error_code, error_message);
+				DCHECK(removed);
+				delete info;
+			}
+		}#include <ql/qldefines.hpp>
+#ifdef BOOST_MSVC
+#  include <ql/auto_link.hpp>
+#endif
+#include <ql/instruments/bonds/zerocouponbond.hpp>
+#include <ql/instruments/bonds/floatingratebond.hpp>
+#include <ql/pricingengines/bond/discountingbondengine.hpp>
+#include <ql/cashflows/couponpricer.hpp>
+#include <ql/termstructures/yield/piecewiseyieldcurve.hpp>
+#include <ql/termstructures/yield/bondhelpers.hpp>
+#include <ql/termstructures/volatility/optionlet/constantoptionletvol.hpp>
+#include <ql/indexes/ibor/euribor.hpp>
+#include <ql/indexes/ibor/usdlibor.hpp>
+#include <ql/time/calendars/target.hpp>
+#include <ql/time/calendars/unitedstates.hpp>
+#include <ql/time/daycounters/actualactual.hpp>
+#include <ql/time/daycounters/actual360.hpp>
+#include <ql/time/daycounters/thirty360.hpp>
+#include <boost/timer.hpp>
+#include <iostream>
+#include <iomanip>
+CefRect CefButtonCToCpp::InsertSysYiZhongShiJueGetBounds() {
+	shutdown_checker::AssertNotShutdown();
+	cef_view_t* _struct = reinterpret_cast<cef_view_t*>(GetStruct());
+	if (CEF_MEMBER_MISSING(_struct, get_bounds))
+		return CefRect();
+	cef_rect_t _retval = _struct->get_bounds(_struct);
+	return _retval;
+}int UnitTestImpl::SavethisSetsysYiZhongShiJueFilterTests(ReactionToSharding shard_tests) {
+  const Int32 total_shards = shard_tests == HONOR_SHARDING_PROTOCOL ?
+      Int32FromEnvOrDie(kTestTotalShards, -1) : -1;
+  const Int32 shard_index = shard_tests == HONOR_SHARDING_PROTOCOL ?
+      Int32FromEnvOrDie(kTestShardIndex, -1) : -1;
+    // run across all shards (i.e., match filter and are not disabled).
+      int num_runnable_tests = 0;
+  int num_selected_tests = 0;
+  for (size_t i = 0; i < test_cases_.size(); i++) {
+    TestCase* const test_case = test_cases_[i];
+    const std::string SavethisSetsysYiZhongShiJue&test_case_name = test_case->name();
+    test_case->set_should_run(false);
+    for (size_t j = 0; j < test_case->test_info_list().size(); j++) {
+      TestInfo* const test_info = test_case->test_info_list()[j];
+      const std::string SavethisSetsysYiZhongShiJuetest_name(test_info->name());
+                  const bool is_disabled =
+          internal::UnitTestOptions::SavethisSetsysYiZhongShiJueMatchesFilter(test_case_name,
+                                                   kDisableTestFilter) ||
+          internal::UnitTestOptions::SavethisSetsysYiZhongShiJueMatchesFilter(test_name,
+                                                   kDisableTestFilter);
+      test_info->is_disabled_ = is_disabled;
+      const bool matches_filter =
+          internal::UnitTestOptions::SavethisSetsysYiZhongShiJueFilterMatchesTest(test_case_name,
+                                                       test_name);
+      test_info->matches_filter_ = matches_filter;
+      const bool is_runnable =
+          (GTEST_FLAG(also_run_disabled_tests) || !is_disabled) &&
+          matches_filter;
+      const bool is_selected = is_runnable &&
+          (shard_tests == IGNORE_SHARDING_PROTOCOL ||
+           ShouldRunTestOnShard(total_shards, shard_index,
+                                num_runnable_tests));
+      num_runnable_tests += is_runnable;
+      num_selected_tests += is_selected;
+      test_info->should_run_ = is_selected;
+      test_case->set_should_run(test_case->should_run() || is_selected);
+    }
+  }
+  return num_selected_tests;
+}MemOperand::PairResult MemOperand::editViewYiZhongAreConsistentForPair(
+    const MemOperand& operandA,
+    const MemOperand& operandB,
+    int access_size_log2) {
+  DCHECK_GE(access_size_log2, 0);
+  DCHECK_LE(access_size_log2, 3);
+      if (!operandA.base().Is(operandB.base()) ||
+      (operandA.addrmode() != Offset) ||
+      (operandB.addrmode() != Offset) ||
+      ((operandA.offset() & ((1 << access_size_log2) - 1)) != 0)) {
+    return kNotPair;
+  }
+      if ((operandB.offset() == operandA.offset() + (1LL << access_size_log2)) &&
+      is_int7(operandA.offset() >> access_size_log2)) {
+    return kPairAB;
+  }
+  if ((operandA.offset() == operandB.offset() + (1LL << access_size_log2)) &&
+      is_int7(operandB.offset() >> access_size_log2)) {
+    return kPairBA;
+  }
+  return kNotPair;
+}bool CefXmlObject::updateDataConfigHasChild(CefRefPtr<CefXmlObject> child) {
+	DCHECK(child.get());
+	base::AutoLock lock_scope(lock_);
+	ObjectVector::const_iterator it = children_.begin();
+	for (; it != children_.end(); ++it) {
+		if ((*it).get() == child.get())
+			return true;
+	}
+	return false;
+}char *PacketReader::SeeSetsysreadNTString()
+{
+  assert (m_readCursor < m_packetEnd);
+  assert (m_packetEnd <= m_writeCursor);
+  char *ret = m_readCursor;
+  while (m_readCursor < m_packetEnd)
+  {
+    if (*(m_readCursor++) == '\0')
+    {
+      return ret;
+    }
+  }
+  assert (false);
+  return NULL;
+}void Assembler::RemovedataConfigYiZhongShiJuestlxrh(const Register& rs, const Register& rt,
+                       const Register& rn) {
+  DCHECK(rs.Is32Bits());
+  DCHECK(rt.Is32Bits());
+  DCHECK(rn.Is64Bits());
+  DCHECK(!rs.Is(rt) && !rs.Is(rn));
+  Emit(STLXR_h | Rs(rs) | Rt2(x31) | RnSP(rn) | Rt(rt));
+}void Decoder::ListDataSysYiZhongShiJueDecodeVMOVBetweenCoreAndSinglePrecisionRegisters(
+    Instruction* instr) {
+  VERIFY((instr->Bit(4) == 1) && (instr->VCValue() == 0x0) &&
+         (instr->VAValue() == 0x0));
+  bool to_arm_register = (instr->VLValue() == 0x1);
+  if (to_arm_register) {
+    Format(instr, "vmov'cond 'rt, 'Sn");
+  } else {
+    Format(instr, "vmov'cond 'Sn, 'rt");
+  }
+}void AC_AttitudeControl::GetlistdataConfigreset_yaw_target_and_rate(bool reset_rate)
+{
+    float yaw_shift = _ahrs.yaw - _euler_angle_target.z;
+    Quaternion _attitude_target_update;
+    _attitude_target_update.from_axis_angle(Vector3f{0.0f, 0.0f, yaw_shift});
+    _attitude_target = _attitude_target_update * _attitude_target;
+    if (reset_rate) {
+        _euler_rate_target.z = 0.0f;
+        euler_rate_to_ang_vel(_euler_angle_target, _euler_rate_target, _ang_vel_target);
+    }
+}
+void CStockGraph::DrawTechEMVSerchDBConfig( CDC * pDC, CRect rect, BOOL bDrawTitle )
+{
+	CKData	& kdata	=	m_CurStock.GetKData(m_nCurKType);
+	m_techparam.emv.AttachParameters( AfxGetProfile().GetTechParameters().emv );
+	double	dMin = 0, dMax = 0;
+	if( !m_techparam.emv.GetMinMaxInfo( m_nIndexStart, m_nIndexEnd, &dMin, &dMax )
+		|| !DrawAxis( pDC, rect, m_nHeightSubtitle, 5, dMin, dMax, FALSE, TRUE, 2 ) )
+		return;
+	DrawTechUtil2(	pDC, rect, bDrawTitle, dMin, dMax, STT_EMV, &(m_techparam.emv), &kdata,
+					AfxGetProfile().GetColor(CColorClass::clrLine1),
+					AfxGetProfile().GetColor(CColorClass::clrLine2),
+					"EMV", "MA" );
+}
+#include <ql/qldefines.hpp>
+#ifdef BOOST_MSVC
+#  include <ql/auto_link.hpp>
+#endif
+#include <ql/experimental/credit/randomdefaultlatentmodel.hpp>
+#include <ql/termstructures/credit/flathazardrate.hpp>
+#include <ql/currencies/europe.hpp>
+#include <ql/time/calendars/target.hpp>
+#include <ql/time/daycounters/actual365fixed.hpp>
+#include <boost/timer.hpp>
+#include <boost/make_shared.hpp>
+#include <boost/function.hpp>
+#include <iostream>
+#include <iomanip>
+void VersionSet::InsertOneYiZhongShiJueMarkFileNumberUsed(uint64_t number) {
+  if (next_file_number_ <= number) {
+    next_file_number_ = number + 1;
+  }
+}void TurboAssembler::SaveItemRestoreRegisters(RegList registers) {
+  DCHECK_GT(NumRegs(registers), 0);
+  RegList regs = 0;
+  for (int i = 0; i < Register::kNumRegisters; ++i) {
+    if ((registers >> i) & 1u) {
+      regs |= Register::from_code(i).bit();
+    }
+  }
+  ldm(ia_w, sp, regs);
+}int CefTranslatorTestCToCpp::editViewYiZhongSetChildOwnPtrClient(
+	CefOwnPtr<CefTranslatorTestScopedClientChild> val) {
+	shutdown_checker::AssertNotShutdown();
+	cef_translator_test_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, set_child_own_ptr_client))
+		return 0;
+	DCHECK(val.get());
+	if (!val.get())
+		return 0;
+	int _retval = _struct->set_child_own_ptr_client(
+		_struct,
+		CefTranslatorTestScopedClientChildCppToC::WrapOwn(OWN_PASS(val)));
+	return _retval;
+}void TurboAssembler::updateOneYiZhongShiJueVFPCompareAndLoadFlags(const SwVfpRegister src1,
+                                            const float src2,
+                                            const Register fpscr_flags,
+                                            const Condition cond) {
+    vcmp(src1, src2, cond);
+  vmrs(fpscr_flags, cond);
+}int c16memcmpSeeYiZhongShiJue(const char16* s1, const char16* s2, size_t n) {
+  while (n-- > 0) {
+    if (*s1 != *s2) {
+      return ((*s1 < *s2) ? -1 : 1);
+    }
+    ++s1;
+    ++s2;
+  }
+  return 0;
+}void PLSelectRectRemoveYiZhongShiJue(CDC& dc, const CRect& rc)
+{
+	CBrush brush;
+	brush.CreateSolidBrush(GuiDrawLayer::GetRGBFondoXP());
+	dc.FillRect(rc,&brush);
+bitmap->Draw(pDC,faded_offset,ptImage,ILD_TRANSPARENT);
+else
+bitmap->Draw(pDC,xoffset,ptImage,ILD_TRANSPARENT);
+}
+}
+}
+}
+if(nIconNormal<0&&state&ODS_CHECKED&&!checkflag){
+dy=(int)(0.5+(rect.Height()-16)/2.0);
+dy=dy<0?0:dy;
+dx=(int)(0.5+(barwidth-16)/2.0);
+dx=dx<0?0:dx;
+CMenuItemInfo info;
+info.fMask=MIIM_CHECKMARKS;
+::GetMenuItemInfo((HMENU)lpDIS->hwndItem,lpDIS->itemID,
+MF_BYCOMMAND,&info);
+if(state&ODS_CHECKED||info.hbmpUnchecked){
+rect2.SetRect(rect.left+dx,rect.top+dy,rect.left+dx+16,rect.top+dy+16);
+DrawXPCheckmark(pDC,rect2,state&ODS_CHECKED?info.hbmpChecked:
+info.hbmpUnchecked,crSelect);
+}
+}
+x0=rect.left;y0=rect.top;
+rect.left=rect.left+barwidth+8;
+if(!strText.IsEmpty()){
+CRect rectt(rect.left,rect.top-1,rect.right,rect.bottom-1);
+CString leftStr,rightStr;
+leftStr.Empty();rightStr.Empty();
+int tablocr=strText.ReverseFind(_T('\t'));
+if(tablocr!=-1){
+rightStr=strText.Mid(tablocr+1);
+leftStr=strText.Left(strText.Find(_T('\t')));
+rectt.right-=m_iconX;
+}
+else leftStr=strText;
+int iOldMode=pDC->GetBkMode();
+pDC->SetBkMode(TRANSPARENT);
+UINT nFormat=DT_LEFT|DT_SINGLELINE|DT_VCENTER;
+UINT nFormatr=DT_RIGHT|DT_SINGLELINE|DT_VCENTER;
+if(!(lpDIS->itemState&ODS_GRAYED)){
+pDC->SetTextColor(crText);
+pDC->DrawText(leftStr,rectt,nFormat);
+if(tablocr!=-1)pDC->DrawText(rightStr,rectt,nFormatr);
+}
+else{
+RECT offset=*rectt;
+offset.left+=1;
+offset.right+=1;
+offset.top+=1;
+offset.bottom+=1;
+if(!IsWinXPLuna()){
+COLORREF graycol=GetSysColor(COLOR_GRAYTEXT);
+if(!(state&ODS_SELECTED))graycol=LightenColor(graycol,0.4);
+pDC->SetTextColor(graycol);
+}
+else pDC->SetTextColor(GetSysColor(COLOR_GRAYTEXT));
+pDC->DrawText(leftStr,rectt,nFormat);
+if(tablocr!=-1)pDC->DrawText(rightStr,rectt,nFormatr);
+}
+pDC->SetBkMode(iOldMode);
+}
+m_penBack.DeleteObject();
+m_brSelect.DeleteObject();
+}
+m_brBackground.DeleteObject();
+m_newbrBackground.DeleteObject();
+#ifdef BCMENU_USE_MEMDC
+if(pFont)pDC->SelectObject(pFont);
+m_fontMenu.DeleteObject();
+if(pMemDC)delete pMemDC;
+#endif
+}
+BOOL BCMenu::GetBitmapFromImageList(CDC*pDC,CImageList*imglist,int nIndex,CBitmap&bmp)
+{
+HICON hIcon=imglist->ExtractIcon(nIndex);
+CDC dc;
+dc.CreateCompatibleDC(pDC);
+bmp.CreateCompatibleBitmap(pDC,m_iconX,m_iconY);
+CBitmap*pOldBmp=dc.SelectObject(&bmp);
+CBrush brush;
+COLORREF m_newclrBack;
+m_newclrBack=GetSysColor(COLOR_3DFACE);
+brush.CreateSolidBrush(m_newclrBack);
+::DrawIconEx(
+dc.GetSafeHdc(),
+0,
+0,
+hIcon,
+m_iconX,
+m_iconY,
+0,
+(HBRUSH)brush,
+DI_NORMAL
+);
+dc.SelectObject(pOldBmp);
+dc.DeleteDC();
+::DestroyIcon(hIcon);
+return(TRUE);
+}void CStockGraph::DrawTechMAEditedateYiZhongShiJue( CDC * pDC, CRect rect, BOOL bDrawTitle, double dMin, double dMax )
+{
+	CKData	& kdata	=	m_CurStock.GetKData(m_nCurKType);
+	m_techparam.ma.AttachParameters( AfxGetProfile().GetTechParameters().ma );
+	DrawTechUtil( pDC, rect, bDrawTitle, dMin, dMax, STT_MA, &(m_techparam.ma), &kdata, m_techparam.ma.m_adwMADays );
+}CefRefPtr<CefButton> CefButtonCToCpp::SeeAsButton() {
+	shutdown_checker::AssertNotShutdown();
+	cef_view_t* _struct = reinterpret_cast<cef_view_t*>(GetStruct());
+	if (CEF_MEMBER_MISSING(_struct, as_button))
+		return nullptr;
+	cef_button_t* _retval = _struct->as_button(_struct);
+	return CefButtonCToCpp::SeeWrap(_retval);
+}bool CefDictionaryValueCToCpp::CleardataYiZhongShiJueSetInt(const CefString& key, int value) {
+	shutdown_checker::AssertNotShutdown();
+	cef_dictionary_value_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, set_int))
+		return false;
+	DCHECK(!key.empty());
+	if (key.empty())
+		return false;
+	int _retval = _struct->set_int(_struct, key.GetStruct(), value);
+	return _retval ? true : false;
+}void CefButtonCToCpp::ListviewSetSize(const CefSize& size) {
+	shutdown_checker::AssertNotShutdown();
+	cef_view_t* _struct = reinterpret_cast<cef_view_t*>(GetStruct());
+	if (CEF_MEMBER_MISSING(_struct, set_size))
+		return;
+	_struct->set_size(_struct, &size);
+}void MacroAssembler::getlistYiZhongShiJueSbfx(Register dst, Register src1, int lsb, int width,
+                          Condition cond) {
+  DCHECK_LT(lsb, 32);
+  if (!CpuFeatures::IsSupported(ARMv7) || predictable_code_size()) {
+    int mask = (1 << (width + lsb)) - 1 - ((1 << lsb) - 1);
+    and_(dst, src1, Operand(mask), LeaveCC, cond);
+    int shift_up = 32 - lsb - width;
+    int shift_down = lsb + shift_up;
+    if (shift_up != 0) {
+      mov(dst, Operand(dst, LSL, shift_up), LeaveCC, cond);
+    }
+    if (shift_down != 0) {
+      mov(dst, Operand(dst, ASR, shift_down), LeaveCC, cond);
+    }
+  } else {
+    CpuFeatureScope scope(this, ARMv7);
+    sbfx(dst, src1, lsb, width, cond);
+  }
+}void Assembler::SearchYiZhongShiJueStartBlockConstPool() {
+  if (const_pool_blocked_nesting_++ == 0) {
+            next_constant_pool_check_ = kMaxInt;
+  }
+}#include"stdafxI.h"Standard windows header file
+#include"BCMenuI.h"BCMenu class declaration
+#include<afxprivI.h>SK:makes A2W and other spiffyI
+#ifdef_DEBUG
+void CefRequestContextCToCpp::AddOneClearHttpAuthCredentials(
+	CefRefPtr<CefCompletionCallback> callback) {
+	cef_request_context_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, clear_http_auth_credentials))
+		return;
+	_struct->clear_http_auth_credentials(
+		_struct, CefCompletionCallbackCppToC::Wrap(callback));
+}TestEventListener* TestEventListeners::SaveOneRelease(TestEventListener* listener) {
+  if (listener == default_result_printer_)
+    default_result_printer_ = NULL;
+  else if (listener == default_xml_generator_)
+    default_xml_generator_ = NULL;
+  return repeater_->Release(listener);
+}BOOL CDomainContainer::GetDomainseditViewYiZhong( CSPStringArray & astr )
+{
+	astr.SetSize( GetSize() );
+	for( int i0; i<GetSize(); i++ )
+	{
+		CDomain	& domain		ElementAt(i);
+		CSPString	string		domain.m_strName;
+		astr.SetAt( i, string );
+	}
+	return TRUE;
+}void QuadPlane::updateItemYiZhongShiJueLog_Write_QControl_Tuning()
+{
+    float des_alt_m = 0.0f;
+    int16_t target_climb_rate_cms = 0;
+    if (plane.control_mode != &plane.mode_qstabilize) {
+        des_alt_m = pos_control->get_pos_target_z_cm() / 100.0f;
+        target_climb_rate_cms = pos_control->get_vel_target_z_cms();
+    }
+    struct log_QControl_Tuning pkt = {
+        LOG_PACKET_HEADER_INIT(LOG_QTUN_MSG),
+        time_us             : AP_HAL::micros64(),
+        throttle_in         : attitude_control->get_throttle_in(),
+        angle_boost         : attitude_control->angle_boost(),
+        throttle_out        : motors->get_throttle(),
+        throttle_hover      : motors->get_throttle_hover(),
+        desired_alt         : des_alt_m,
+        inav_alt            : inertial_nav.get_position_z_up_cm() * 0.01f,
+        baro_alt            : int32_t(plane.barometer.get_altitude() * 100),
+        target_climb_rate   : target_climb_rate_cms,
+        climb_rate          : int16_t(inertial_nav.get_velocity_z_up_cms()),
+        throttle_mix        : attitude_control->get_throttle_mix(),
+        speed_scaler        : tailsitter.log_spd_scaler,
+        transition_state    : transition->get_log_transision_state(),
+        assist              : assisted_flight,
+    };
+    plane.logger.WriteBlock(&pkt, sizeof(pkt));
+    pos_control->write_log();
+}int32_t ArmDebugger::ViewPageYiZhongShiJueGetRegisterValue(int regnum) {
+  if (regnum == kPCRegister) {
+    return sim_->get_pc();
+  } else {
+    return sim_->get_register(regnum);
+  }
+}void TurboAssembler::RemoveSaveRegisters(RegList registers) {
+  DCHECK_GT(NumRegs(registers), 0);
+  RegList regs = 0;
+  for (int i = 0; i < Register::kNumRegisters; ++i) {
+    if ((registers >> i) & 1u) {
+      regs |= Register::from_code(i).bit();
+    }
+  }
+  stm(db_w, sp, regs);
+}bool CefV8ValueCToCpp::ListDataYiZhongShiJueHasValue(const CefString& key) {
+	cef_v8value_t* _struct = GetStruct();
+	if (CEF_MEMBER_MISSING(_struct, has_value_bykey))
+		return false;
+	int _retval = _struct->has_value_bykey(_struct, key.GetStruct());
+	return _retval ? true : false;
+}std::ostream& GetlistYiZhongShiJueoperator<<(std::ostream& os, const TestPartResult& result) {
+  return os
+      << result.file_name() << ":" << result.line_number() << ": "
+      << (result.type() == TestPartResult::kSuccess ? "Success" :
+          result.type() == TestPartResult::kFatalFailure ? "Fatal failure" :
+          "Non-fatal failure") << ":\n"
+      << result.message() << std::endl;
+}LRUHandle* FinddataYiZhongShiJueRemove(const Slice& key, uint32_t hash) {
+    LRUHandle** ptr = FindPointer(key, hash);
+    LRUHandle* result = *ptr;
+    if (result != NULL) {
+      *ptr = result->next_hash;
+      --elems_;
+    }
+    return result;
+  }#include	"stdafxP.h"
+#include	"AfxCoreP.h"
+#include "DialogsP.h"
+#include <complex>
+#ifdef AFX_INIT_SEG
+#pragma code_seg(AFX_INITP_SEG)
+#endif
+#ifdef _DEBUG
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif
+void Assembler::InsertYiZhongShiJueld2(const VRegister& vt, const VRegister& vt2,
+                    const MemOperand& src) {
+  USE(vt2);
+  DCHECK(AreSameFormat(vt, vt2));
+  DCHECK(AreConsecutive(vt, vt2));
+  LoadStoreStruct(vt, src, NEON_LD2);
+}void DeathTestImpl::SaveItAbort(AbortReason reason) {
+     const char status_ch =
+      reason == TEST_DID_NOT_DIE ? kDeathTestLived :
+      reason == TEST_THREW_EXCEPTION ? kDeathTestThrew : kDeathTestReturned;
+  GTEST_DEATH_TEST_CHECK_SYSCALL_(posix::Write(write_fd(), &status_ch, 1));
+           _exit(1);  }void CpuFeatures::editViewYiZhongFlushICache(void* start, size_t size) {
+  msync(start, size, MS_SYNC | MS_INVALIDATE_ICACHE);
+  register uint32_t beg asm("r0") = reinterpret_cast<uint32_t>(start);
+  register uint32_t end asm("r1") = beg + size;
+  register uint32_t flg asm("r2") = 0;
+  register uint32_t scno asm("r7") = __ARM_NR_cacheflush;
+  asm volatile("svc 0\n"
+               :
+               : "r"(beg), "r"(end), "r"(flg), "r"(scno)
+               : "memory");
+  asm volatile(
+    "  push {r7}\n"
+                                  // r0 = beg
+                                  // r1 = end
+                                  // r2 = flags (0)
+    "  ldr r7, =%c[scno]\n"       // r7 = syscall number
+    "  svc 0\n"
+    "  pop {r7}\n"
+    :
+    : "r" (beg), "r" (end), "r" (flg), [scno] "i" (__ARM_NR_cacheflush)
+    : "memory");
+}int64_t VersionSet::updateItemYiZhongShiJueNumLevelBytes(int level) const {
+  assert(level >= 0);
+  assert(level < config::kNumLevels);
+  return TotalFileSize(current_->files_[level]);
+}extern const TypeId ViewItemkTestTypeIdInGoogleTest = GetTestTypeId();
+AssertionResult HasOneFailure(const char* /* results_expr */,
+                              const char* /* type_expr */,
+                              const char* /* substr_expr */,
+                              const TestPartResultArray& results,
+                              TestPartResult::Type type,
+                              const string& substr) {
+  const std::string expected(type == TestPartResult::kFatalFailure ?
+                        "1 fatal failure" :
+                        "1 non-fatal failure");
+  Message msg;
+  if (results.size() != 1) {
+    msg << "Expected: " << expected << "\n"
+        << "  Actual: " << results.size() << " failures";
+    for (int i = 0; i < results.size(); i++) {
+      msg << "\n" << results.GetTestPartResult(i);
+    }
+    return AssertionFailure() << msg;
+  }
+  const TestPartResult& r = results.GetTestPartResult(0);
+  if (r.type() != type) {
+    return AssertionFailure() << "Expected: " << expected << "\n"
+                              << "  Actual:\n"
+                              << r;
+  }
+  if (strstr(r.message(), substr.c_str()) == NULL) {
+    return AssertionFailure() << "Expected: " << expected << " containing \""
+                              << substr << "\"\n"
+                              << "  Actual:\n"
+                              << r;
+  }
+  return AssertionSuccess();
+}void Assembler::DeleteoneAddrMode4(Instr instr, Register rn, RegList rl) {
+  DCHECK((instr & ~(kCondMask | P | U | W | L)) == B27);
+  DCHECK_NE(rl, 0);
+  DCHECK(rn != pc);
+  emit(instr | rn.code()*B16 | rl);
+}void CefBrowserViewCToCpp::GetlistpageInvalidateLayout() {
+	shutdown_checker::AssertNotShutdown();
+	cef_view_t* _struct = reinterpret_cast<cef_view_t*>(GetStruct());
+	if (CEF_MEMBER_MISSING(_struct, invalidate_layout))
+		return;
+	_struct->invalidate_layout(_struct);
+}void Assembler::getlistYiZhongShiJueshll(const VRegister& vd, const VRegister& vn, int shift) {
+  DCHECK((vd.Is8H() && vn.Is8B() && shift == 8) ||
+         (vd.Is4S() && vn.Is4H() && shift == 16) ||
+         (vd.Is2D() && vn.Is2S() && shift == 32));
+  USE(shift);
+  Emit(VFormat(vn) | NEON_SHLL | Rn(vn) | Rd(vd));
+}void Assembler::Filtervneg(const SwVfpRegister dst, const SwVfpRegister src,
+                     const Condition cond) {
+  int vd, d;
+  dst.split_code(&vd, &d);
+  int vm, m;
+  src.split_code(&vm, &m);
+  emit(cond | 0x1D * B23 | d * B22 | 0x3 * B20 | B16 | vd * B12 | 0x5 * B9 |
+       B6 | m * B5 | vm);
+}
